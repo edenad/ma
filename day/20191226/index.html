@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styles_bbs.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <title>Thread003</title>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>にじさんじ新規ライバー1 ましろ</h1>
+    </header>
+    <!-- 以下略 -->
+    <div class="form-container">
+      <h2>新規投稿</h2>
+      <form id="postForm" action="#" method="post">
+        <input type="text" name="username" value="ゆめ">
+        <textarea name="message" rows="4"></textarea>
+        <button type="submit">投稿する</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    // 投稿フォームの送信イベントをキャッチ
+    document.getElementById('postForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // デフォルトのフォーム送信を停止
+      document.querySelectorAll('.message p').forEach(function(message) {
+        message.innerHTML = '<span style="color: red;">[message deleted.]</span>';
+      });
+    });
+  </script>
+</body>
+</html>

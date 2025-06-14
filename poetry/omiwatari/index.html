@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styles_single.css" />
+  <title id="page-title">歩く道</title>
+  <style>
+    /* 時計用のスタイル */
+    #clock {
+      color: #1E2232;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .hidden-text {
+      filter: blur(4px);
+      transition: filter 0.3s ease;
+      display: inline-block;
+    }
+    .hidden-text:hover {
+      filter: blur(0);
+    }
+    /* 画像の暗くなるエフェクト */
+    .footer-image {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+    }
+    .footer-image img {
+      max-width: 100%;
+      height: auto;
+    }
+    .footer-image::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* 中心は透明、外側は暗くなるラジアルグラデーション */
+      background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.8) 100%);
+      pointer-events: none;
+    }
+  </style>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="container">
+    <div class="profile-header">
+      <h1 id="header-title">「御神渡り」</h1>
+    </div>
+    <div class="profile-section" id="content">
+      まだ、何が何だか分からない、といった感じよね。<br>
+      ここに来るまで、貴方がどんな道筋を辿ったかは分からないけれど。<br>
+      でも、この道を進み続けるしかない。貴方にしかできない事だから。<br>
+      たとえ、何が分かって、何が分からなかったとしても。<br>
+      <br>
+      それじゃあ、案内を進めていいかしら。<br>
+      <br>
+      <span class="hidden-text">まずは「みらい」を見て、すべてを明かして。</span><br>
+    </div>
+  </div>
+</body>
+</html>

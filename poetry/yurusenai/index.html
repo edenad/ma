@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styles_single.css" />
+  <title id="page-title">ゆるせない</title>
+  <style>
+    /* 時計用のスタイル */
+    #clock {
+      color: #1E2232;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .hidden-text {
+      filter: blur(4px);
+      transition: filter 0.3s ease;
+      display: inline-block;
+    }
+    .hidden-text:hover {
+      filter: blur(0);
+    }
+    /* 画像の暗くなるエフェクト */
+    .footer-image {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+    }
+    .footer-image img {
+      max-width: 100%;
+      height: auto;
+    }
+    .footer-image::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* 中心は透明、外側は暗くなるラジアルグラデーション */
+      background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.8) 100%);
+      pointer-events: none;
+    }
+  </style>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="container">
+    <div class="profile-header">
+      <h1 id="header-title">「ゆるせない」</h1>
+    </div>
+    <div class="profile-section" id="content">
+      初めて目を合わせた時に、運命を感じたの。<br>
+      こっちを向いて微笑み返してくれたの、今でも覚えているよ。<br>
+      あの笑顔を私に向けてくれたのが、とても嬉しくて。<br>
+      それから私は、あの日付を忘れたことはない。<br>
+      でも、今は違う。<br>
+      <br>
+      <span class="hidden-text">「あの時」に戻って、「私」を見つけて。</span><br>
+    </div>
+  </div>
+  
+  <footer class="footer-section">
+    <!-- 時計表示用の要素 -->
+    <div id="clock"></div>
+
+    <div class="media-container">
+      <img src="/images/clock.png">
+    </div>
+  </footer>
+  
+  <script>
+  // PC の現在時刻を表示する時計の更新処理
+  function updateClock() {
+      const now = new Date();
+      // toLocaleString() は日付と時刻をまとめて表示する
+      const dateTimeString = now.toLocaleString();
+      document.getElementById("clock").textContent = dateTimeString;
+    }
+  // 初期表示と1秒ごとの更新
+  updateClock();
+  setInterval(updateClock, 1000);
+  // MutationObserver を使って時計要素の変更を監視
+  const clockElement = document.getElementById("clock");
+  </script>
+  
+  <script>
+    (function() {
+      const now = new Date();
+      const startDate = new Date("2019-12-26");
+      const endDate = new Date("2022-06-08");
+      if (now >= startDate && now <= endDate) {
+        document.getElementById("content").innerHTML = "<p>ああ、愛おしい。<br>これはきっと運命なのでしょう。<br>私、あの子を好きになっちゃったかも。<br>ああ、この気持ちが抑えられない！<br>今すぐ、貴方に逢いに行きたいの。<br>だから。<br><span class=\"hidden-text\">私のことだけを「永遠に」見ていてよ。</span><br></p>";
+        document.getElementById("page-title").textContent = "ずっとずっと";
+        document.getElementById("header-title").textContent = "ずっと";
+      }
+      const startDate2 = new Date("2022-06-09");
+      const endDate2 = new Date("2022-07-08");
+      if (now >= startDate2 && now <= endDate2) {
+        document.getElementById("content").innerHTML = "<p>どうして。<br>どうして、消えてしまったの？<br>どうして。<br>どうして。<br>どうして。<br>どうして。<br><span class=\"hidden-text\">私は「永遠に」独りだ。</span><br></p>";
+        document.getElementById("page-title").textContent = "どうして？";
+        document.getElementById("header-title").textContent = "どうして？";
+      }
+    })();
+  </script>
+</body>
+</html>

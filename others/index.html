@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>そのほか</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <style>
+    /* 上部オプションエリア */
+    #top-options {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 20px;
+    }
+    #top-options button {
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      color: #ffd700;
+      /* 「はい」「いいえ」は操作させず、鳥居ボタンだけ有効にする */
+      cursor: not-allowed;
+      opacity: 0.8;
+      user-select: none;
+    }
+    /* 鳥居ボタンは操作可能とする */
+    #opt-torii {
+      cursor: pointer;
+      opacity: 1;
+    }
+    #opt-torii img {
+      width: 50px;
+      height: auto;
+    }
+
+    /* クリック文字表示枠 */
+    #display {
+      width: 100%;
+      height: 50px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      text-align: center;
+      line-height: 50px;
+      margin-bottom: 20px;
+      font-size: 24px;
+      border: 2px solid #fff;
+      user-select: none;
+    }
+
+    /* 五十音・数字ボード */
+    #board {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .row {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+    /* 文字ボタン（背景透明） */
+    .char-btn,
+    .dummy-btn {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      user-select: none;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+    }
+    .char-btn:focus,
+    .dummy-btn:focus {
+      outline: none;
+    }
+    .char-btn:hover {
+      color: #ffcccc;
+    }
+    .dummy-btn {
+      cursor: default;
+      opacity: 0.5;
+    }
+    /* 五十音ボタンにカスタムフォントを適用 */
+    #board .char-btn {
+      font-family: 'g_コミックホラー恐怖(R)', sans-serif;
+    }
+
+    footer {
+      text-align: center;
+      color: #fff;
+      margin-top: 20px;
+      padding: 10px 0;
+      border-top: 1px solid #444;
+    }
+    header nav ul {
+      list-style: none;
+      padding: 10px;
+      background-color: #222;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    header nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+  </style>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/home/">ホーム</a></li>
+        <li><a href="/about/">基本情報</a></li>
+        <li><a href="/link/">動画リンク</a></li>
+        <li><a href="/others/">そのほか</a></li>
+        <li><a href="/bbs/">交流</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <div class="wrapper">
+    <!-- 上部オプション -->
+    <div id="top-options">
+      <button id="opt-yes">はい</button>
+      <button id="opt-torii">
+        <img src="/images/torii.png" alt="鳥居">
+      </button>
+      <button id="opt-no">いいえ</button>
+    </div>
+
+    <!-- クリック文字表示枠 -->
+    <div id="display"></div>
+
+    <!-- 五十音・数字ボード -->
+    <div id="board">
+      <div class="row">
+        <button class="char-btn">わ</button>
+        <button class="char-btn">ら</button>
+        <button class="char-btn">や</button>
+        <button class="char-btn">ま</button>
+        <button class="char-btn">は</button>
+        <button class="char-btn">な</button>
+        <button class="char-btn">た</button>
+        <button class="char-btn">さ</button>
+        <button class="char-btn">か</button>
+        <button class="char-btn">あ</button>
+      </div>
+      <div class="row">
+        <button class="dummy-btn">　</button>
+        <button class="char-btn">り</button>
+        <button class="dummy-btn">　</button>
+        <button class="char-btn">み</button>
+        <button class="char-btn">ひ</button>
+        <button class="char-btn">に</button>
+        <button class="char-btn">ち</button>
+        <button class="char-btn">し</button>
+        <button class="char-btn">き</button>
+        <button class="char-btn">い</button>
+      </div>
+      <div class="row">
+        <button class="char-btn">を</button>
+        <button class="char-btn">る</button>
+        <button class="char-btn">ゆ</button>
+        <button class="char-btn">む</button>
+        <button class="char-btn">ふ</button>
+        <button class="char-btn">ぬ</button>
+        <button class="char-btn">つ</button>
+        <button class="char-btn">す</button>
+        <button class="char-btn">く</button>
+        <button class="char-btn">う</button>
+      </div>
+      <div class="row">
+        <button class="dummy-btn">　</button>
+        <button class="char-btn">れ</button>
+        <button class="dummy-btn">　</button>
+        <button class="char-btn">め</button>
+        <button class="char-btn">へ</button>
+        <button class="char-btn">ね</button>
+        <button class="char-btn">て</button>
+        <button class="char-btn">せ</button>
+        <button class="char-btn">け</button>
+        <button class="char-btn">え</button>
+      </div>
+      <div class="row">
+        <button class="char-btn">ん</button>
+        <button class="char-btn">ろ</button>
+        <button class="char-btn">よ</button>
+        <button class="char-btn">も</button>
+        <button class="char-btn">ほ</button>
+        <button class="char-btn">の</button>
+        <button class="char-btn">と</button>
+        <button class="char-btn">そ</button>
+        <button class="char-btn">こ</button>
+        <button class="char-btn">お</button>
+      </div>
+      <div class="row">
+        <button class="char-btn">1</button>
+        <button class="char-btn">2</button>
+        <button class="char-btn">3</button>
+        <button class="char-btn">4</button>
+        <button class="char-btn">5</button>
+        <button class="char-btn">6</button>
+        <button class="char-btn">7</button>
+        <button class="char-btn">8</button>
+        <button class="char-btn">9</button>
+        <button class="char-btn">0</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 右下のソーシャルアイコン -->
+  <div id="social-icons">
+    <a href="https://twitter.com/mashiro2434" target="_blank">
+      <img src="/images/twitter-logo.png" alt="Twitter">
+    </a>
+    <a href="https://www.youtube.com/channel/UCfki3lMEF6SGBFiFfo9kvUA" target="_blank">
+      <img src="/images/youtube-logo.png" alt="YouTube">
+    </a>
+  </div>
+
+  <script>
+    // 入力された文字列と対応するリダイレクト先 URL の辞書
+    const targets = {
+      "あし": "https://www.youtube.com/watch?v=niJARFO2tA8&t=7050s",
+      "けんさく": "https://youtube.com/playlist?list=PLi3tGGFl-0rVy1fcIl8LOefP0InkWAQpV&si=6-6pHyZjEzrlOIJc",
+      "しんれい": "https://youtube.com/playlist?list=PLi3tGGFl-0rWj7QHStFxydT2f7Bpaxy2J&si=_y7rZvMBtHNWGHGj",
+      "うた": "https://youtube.com/playlist?list=PLi3tGGFl-0rUIHNsryG8mknGLM_4kh2vh&si=jePpjvX1mGkulEm6",
+      "20200101": "../day/20200101/",//
+      //共通処理。ここから1~3のいずれかに入りスタート。
+      "いなてらす": "../institution/inform/",//→さくほけんせつ
+      "さくほけんせつ": "../sakuho_company/index.html",//たかなみしんや
+      //★ここまでは表層。
+      "ゆるせない": "../poetry/yurusenai/",//あのとき、わたし、20191226、20220708、(えいえん、とわ)
+      //★第一節の開始キーワード。
+      "あのとき": "../poetry/anotoki/",//→20220708
+      "わたし": "../poetry/watashi/",//→20220608
+      "20220608": "../day/20220608/",//→20191226
+      "20220708": "../day/20220708/",//→20191226
+      "20191226": "../day/20191226/",//→すわ
+      "すわ": "../kokkuri_suwa/",//(docs1)→いもむし
+      "いもむし": "../kokkuri_imomushi/",//→はかあらし
+      //イラストルート
+      "とわ": "../a_iillust_contest/kokkuri_towa/",//(picture1)
+      "えいえん": "../a_iillust_contest/kokkuri_eien/",//(picture1)
+      //★ここまでが第一節。諏訪健二の取り調べと起きている事件について。
+      "はかあらし": "../poetry/hakaarashi/",//(Key1)うみ、しんかい、かいてい、かいこう、(はかまいり)
+      //★第二節の開始キーワード。
+      "うみ": "../poetry/umi/",//→しんかい
+      "しんかい": "../poetry/sinkai/",//→うみ、かいてい
+      "かいてい": "../poetry/kaitei/",//→しんかい、かいこう
+      "かいこう": "../poetry/kaikou/",//→かみ、かいてい
+      "かみ": "../kokkuri_kami/",//→みくりやうみ
+      "みくりやうみ": "../kokkuri_mikuriya/",//(docs2)→かとうまつ、さくらしおん、おみわたり
+      "かとうまつ": "../news/article/0x132690f/",//はやみさえ
+      "はやみさえ": "../news/writer/hayami_sae.html",//とみながさえ、直接アクセス不可。→𢟙
+      "20080911": "../chigayano_mental_clinic/w69r/診断書_患者番号W69R.pdf",//病院ページにアクセス可能
+      "さくらしおん": "../news/article/0x132db31/",//とみながさえ
+      "20110129": "../chigayano_mental_clinic/6x71/診断書_患者番号6X71.pdf",//病院ページにアクセス可能
+      //イラストルート
+      "はかまいり": "../poetry/hakamairi/",//→むいしき
+      "むいしき": "../a_iillust_contest/muishiki/",//(picture2)
+      //★ここまでが第二節。御厨うみの手記と連続殺人の詳細。
+      "おみわたり": "../poetry/omiwatari/",//→みらい
+      //★第三節の開始キーワード。
+      "みらい": "../kokkuri_mirai/",//→19780316に直接アクセス可能、あたま
+      "19780316": "../news/archive/0x12dd2dc/",//あたま
+      "あたま": "../horror_site/story4.html",//→さくほけんせつ
+      "たかなみしんや": "../news/article/0x1301d9c/",//かなさし
+      //★ここまでが第三節。高浪事件の周辺情報を提供。
+      "うきみをやつす": "",
+      
+      //ここまでが第四節。はじめに宮部の死の真相と、富永のカウンセリングの詳細、諏訪のたくらみをまとめたうえで連絡を必要とする。
+      //ここまでが第五節。
+    };
+
+    const display = document.getElementById("display");
+    const charButtons = document.querySelectorAll(".char-btn");
+    const toriiButton = document.getElementById("opt-torii");
+    // 入力ロック用フラグ。対象文字列が完成したら true になる
+    let inputLocked = false;
+
+
+    // 文字の置き換えルール（小文字対応）
+    const smallCharMap = {
+      "や": "ゃ",
+      "ゆ": "ゅ",
+      "よ": "ょ",
+      "つ": "っ"
+    };
+
+    // 拡大率チェック関数（50%以下の場合にtrue）
+    function isScale50orLess() {
+      return window.devicePixelRatio <= 0.5;
+    }
+
+    // 文字ボタンをクリックした際の処理を修正
+    charButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (!inputLocked) {
+          let charToAdd = btn.textContent;
+          if (isScale50orLess() && smallCharMap[charToAdd]) {
+            charToAdd = smallCharMap[charToAdd];
+          }
+          display.textContent += charToAdd;
+          checkTarget();
+        }
+      });
+    });
+
+    // 鳥居ボタンをクリックした場合、表示エリアをクリアし、入力ロックを解除
+    toriiButton.addEventListener("click", () => {
+      display.textContent = "";
+      inputLocked = false;
+    });
+
+    // ダブルクリックでも display をクリアして入力ロック解除
+    display.addEventListener("dblclick", () => {
+      display.textContent = "";
+      inputLocked = false;
+    });
+
+    // 入力された文字列が targets に存在すれば入力をロックし、リダイレクト
+    function checkTarget() {
+      const input = display.textContent;
+      if (targets[input]) {
+        inputLocked = true;
+        window.location.href = targets[input];
+      }
+    }
+  </script>
+</body>
+</html>

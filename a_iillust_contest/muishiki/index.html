@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styles.css" />
+  <title>こころ</title>
+  <style>
+  /* イラスト全体のレイアウト */
+    .illustration {
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    /* 画像のスタイル */
+    .illustration img {
+      max-width: 600px;
+      max-height: 400px;
+      height: auto;
+    }
+    
+    /* キャプションのスタイル */
+    .illustration figcaption {
+      margin-top: 15px;
+      padding: 0 10px;
+    }
+    
+    /* 題名 */
+    .illustration .title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    
+    /* 賞とアイコンをまとめるセクション */
+    .award-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+    
+    /* 賞のテキスト */
+    .award-section .award {
+      font-size: 1.2rem;
+      color: #00d6af;
+    }
+    
+    /* アイコンのスタイル */
+    .award-section .icon img {
+      width: 40px;
+      height: 40px;
+    }
+    
+    /* 説明文 */
+    .illustration .description {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #ccc;
+    }
+    
+  </style>
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="container">
+    <figure class="illustration">
+      <!-- 画像クリックでダウンロード -->
+      <a href="/images/tree.png" download="tree.png">
+        <img src="/images/tree.png" alt="心象の樹">
+      </a>
+      <figcaption>
+        <h2 class="title">「心象の樹」</h2>
+        <div class="award-section">
+          <div class="award">佳作</div>
+        </div>
+        <p class="description">私たちは皆孤独で、それゆえに誰の心も理解することはできません。<br>
+          私の心から生えた樹は、表出した意識となり、他人に見えるような形を成します。<br>
+          しかし、この樹をいくら見ても、触れても、私の心を暴くことはできません。<br>
+          所詮、樹は樹でしかないのですから。<br>
+        </p>
+      </figcaption>
+    </figure>
+  </div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>交流掲示板</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    /* 掲示板一覧専用スタイル */
+    .tab-menu {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .tab-menu button {
+      flex: 1;
+      padding: 10px;
+      background-color: #444;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .tab-menu button.active {
+      background-color: #556cd6;
+    }
+    .thread-list {
+      list-style: none;
+      padding: 0;
+      transition: opacity 0.5s ease;
+    }
+    .thread-list li {
+      padding: 10px;
+      margin-bottom: 8px;
+      background-color: #2a2f45;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .thread-list li:hover {
+      background-color: #3a3f55;
+    }
+    /* 管理者用タブのスタイル例 */
+    .admin-thread {
+      background-color: #ffdddd;
+    }
+    /* フェード用 */
+    .fade-out {
+      opacity: 0;
+    }
+    .fade-in {
+      opacity: 1;
+    }
+  </style>
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <!-- ヘッダー（共通メニュー） -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/home/">ホーム</a></li>
+        <li><a href="/about/">基本情報</a></li>
+        <li><a href="/link/">動画リンク</a></li>
+        <li><a href="/others/">そのほか</a></li>
+        <li><a href="/bbs/">交流</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ページコンテナ -->
+  <div class="wrapper">
+    <h2>交流掲示板</h2>
+    
+    <!-- タブメニュー -->
+    <div class="tab-menu">
+      <button id="tabGeneral" class="active">一般掲示板</button>
+      <button id="tabAdmin">管理者用</button>
+    </div>
+    
+    <!-- 一般掲示板スレッド一覧 -->
+    <ul id="generalThreads" class="thread-list fade-in">
+      <li data-thread-id="001" data-thread-name="最新配信同時視聴">最新配信同時視聴</li>
+      <li data-thread-id="002" data-thread-name="良いと思った絵を共有するスレ">良いと思った絵を共有するスレ</li>
+    </ul>
+    
+    <!-- 管理者用セクション -->
+    <div id="adminSection" style="display:none;">
+      <ul id="adminThreads" class="thread-list">
+        <li data-thread-id="101" data-thread-name="運営全般" class="admin-thread">運営全般</li>
+        <li data-thread-id="102" data-thread-name="サイト更新議論" class="admin-thread">サイト更新議論</li>
+        <li data-thread-id="103" data-thread-name="モデレーション記録" class="admin-thread">モデレーション記録</li>
+        <li data-thread-id="104" data-thread-name="管理者交流" class="admin-thread">管理者交流</li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- 右下のSNSアイコン（共通レイアウト） -->
+  <div id="social-icons">
+    <a href="https://twitter.com/mashiro2434" target="_blank">
+      <img src="/images/twitter-logo.png" alt="Twitter">
+    </a>
+    <a href="https://www.youtube.com/channel/UCfki3lMEF6SGBFiFfo9kvUA" target="_blank">
+      <img src="/images/youtube-logo.png" alt="YouTube">
+    </a>
+  </div>
+
+  <!-- フッター -->
+  <footer>
+      <!-- フッター -->
+    <p class="site-credit">
+      このサイトは伊那テラスによって作成されました。<br>
+      &copy; 2022 Ina terrace.
+    </p>
+  </footer>
+  
+  <script>
+    // 一般掲示板タブをクリックした場合
+    document.getElementById('tabGeneral').addEventListener('click', () => {
+      document.getElementById('tabGeneral').classList.add('active');
+      document.getElementById('tabAdmin').classList.remove('active');
+      // 一般掲示板を表示、管理者用セクションを非表示
+      document.getElementById('generalThreads').classList.remove('fade-out');
+      document.getElementById('generalThreads').style.display = 'block';
+      document.getElementById('adminSection').style.display = 'none';
+    });
+    
+    // スレッド項目クリック時（フェードアウト後にスレッド個別ページへ遷移）
+    document.querySelectorAll('.thread-list li').forEach(li => {
+      li.addEventListener('click', () => {
+        const threadId = li.getAttribute('data-thread-id');
+        const lists = document.querySelectorAll('.thread-list');
+        lists.forEach(list => list.classList.add('fade-out'));
+        setTimeout(() => {
+          window.location.href = "bbs/thread" + threadId + ".html";
+        }, 500);
+      });
+    });
+  </script>
+  <script>
+    // 管理者用タブをクリックした場合の処理を変更
+    document.getElementById('tabAdmin').addEventListener('click', () => {
+      // パスワード入力を求める
+      const pass = prompt("管理者用パスワードを入力してください:");
+      let allowedIds = [];
+      
+      if (pass === "bear") {
+        // 1番目のスレッドのみ表示（data-thread-id が "101" と仮定）
+        allowedIds = [101];
+      } else if (pass === "hawk") {
+        // 1,2番目のスレッドを表示（data-thread-id が "101" と "102"）
+        allowedIds = [101, 102];
+      } else if (pass === "fish") {
+        // 1,2,3番目のスレッドを表示（data-thread-id が "101", "102", "103"）
+        allowedIds = [101, 102, 103];
+      } else {
+        // パスワードが間違っている場合
+        alert("パスワードが違います。");
+        document.getElementById('tabAdmin').classList.remove('active');
+        document.getElementById('tabGeneral').classList.add('active');
+        document.getElementById('generalThreads').style.display = 'block';
+        document.getElementById('adminSection').style.display = 'none';
+        return;
+      }
+      
+      // 管理者用リスト内の各スレッドを allowedIds に基づいて表示／非表示を切り替え
+      const adminList = document.getElementById('adminThreads');
+      const threads = adminList.querySelectorAll('li');
+      threads.forEach(li => {
+        const id = parseInt(li.getAttribute('data-thread-id'));
+        if (allowedIds.includes(id)) {
+          li.style.display = 'block';
+        } else {
+          li.style.display = 'none';
+        }
+      });
+      
+      // タブ切替とセクション表示
+      document.getElementById('tabGeneral').classList.remove('active');
+      document.getElementById('tabAdmin').classList.add('active');
+      document.getElementById('generalThreads').style.display = 'none';
+      document.getElementById('adminSection').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ちがや野メンタルクリニック</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles_clinic.css">
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const dateInput = document.getElementById('appointment-date');
+      const now = new Date();
+      const todayStr = now.toISOString().split("T")[0];
+      const oneMonthLater = new Date(now.getFullYear(), now.getMonth() + 1, now.getDate());
+      const maxStr = oneMonthLater.toISOString().split("T")[0];
+      dateInput.min = todayStr;
+      dateInput.max = maxStr;
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>診療予約</h1>
+  </header>
+
+  <div class="section">
+    <p>診療のご予約は、以下のフォームよりお申し込みください。<br>
+    ※現在から1ヶ月以内の日付のみ選択可能です。</p>
+
+    <form id="reservation-form" class="form-vertical">
+      <label for="name">お名前</label>
+      <input type="text" id="name" name="name" required>
+    
+      <label for="email">メールアドレス</label>
+      <input type="email" id="email" name="email" required>
+    
+      <label for="doctor">医師の選択</label>
+      <select id="doctor" name="doctor" required>
+        <option value="">選択してください</option>
+        <option value="御厨 うみ">御厨 うみ（火・金）</option>
+        <option value="鈴原 浩巳">鈴原 浩巳（火・木）</option>
+        <option value="富永 靖男">富永 靖男（月・水・土）</option>
+        <option value="葉山 貞文">葉山 貞文（水・土）</option>
+      </select>
+    
+      <label for="appointment-date">ご希望の日時</label>
+      <input type="date" id="appointment-date" name="date" required>
+    
+      <label for="message">ご相談内容（任意）</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+    
+      <button type="submit">予約する</button>
+    </form>
+    
+  </div>
+
+  <script>
+    const doctorSchedule = {
+      '御厨 うみ': ['火曜日', '金曜日'],
+      '鈴原 浩巳': ['火曜日', '木曜日'],
+      '富永 靖男': ['月曜日', '水曜日', '土曜日'],
+      '葉山 貞文': ['水曜日', '土曜日']
+    };
+  
+    const weekdayNames = ['日曜日','月曜日','火曜日','水曜日','木曜日','金曜日','土曜日'];
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('reservation-form');
+      const dateInput = document.getElementById('appointment-date');
+      const doctorSelect = document.getElementById('doctor');
+  
+      // 日付制限
+      doctorSelect.addEventListener('change', () => {
+        const doctor = doctorSelect.value;
+        const allowedDays = doctorSchedule[doctor] || [];
+  
+        dateInput.addEventListener('input', () => {
+          const selectedDate = new Date(dateInput.value);
+          const dayName = weekdayNames[selectedDate.getDay()];
+          if (!allowedDays.includes(dayName)) {
+            alert(`${doctor}の勤務日は ${allowedDays.join('、')} です。日付を選び直してください。`);
+            dateInput.value = '';
+          }
+        });
+      });
+  
+      // フォーム送信時の仮メール送信処理
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+  
+        // 本番ではここでバックエンドに送信処理を記述
+        alert(`予約内容を送信しました。\n\nお名前: ${data.get('name')}\n医師: ${data.get('doctor')}\n日時: ${data.get('date')}`);
+  
+        // 例：メール送信APIにPOST（仮）
+        /*
+        await fetch("/send_email", {
+          method: "POST",
+          body: JSON.stringify(Object.fromEntries(data)),
+          headers: { "Content-Type": "application/json" }
+        });
+        */
+      });
+    });
+  </script>
+
+  <div style="text-align: center; margin: 2em 0;">
+    <a href="index.html" class="back-button">トップページに戻る</a>
+  </div>
+
+  <footer>
+    <p>&copy; ちがや野メンタルクリニック</p>
+  </footer>
+</body>
+</html>

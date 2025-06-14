@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>恐怖の館</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script>
+    function checkPassword(id) {
+      let answers = {
+        5: "20100622",
+        6: "三谷",
+        7: "加藤鶴"
+      };
+      let input = prompt(questions[id]);
+      if (input === answers[id]) {
+        window.location.href = `story${id}.html`;
+      } else {
+        alert("……違う。");
+      }
+    }
+
+    const questions = {
+      5: "私が結婚した年月日を記入する。8桁。例:2018年4月6日→20180406",
+      6: "私の母の旧姓を漢字で書け。",
+      7: "私が勤めている会社の社長のフルネームを漢字で書け。"
+    };
+
+    // ヒント:
+    // 5: このサイトは富永紗枝(旧姓早見紗枝)の夫である富永太一であることがわかる。
+    //    2つの記事の執筆から、2009年6月か2010年6月のいずれかであると分かる。
+    //    「夫婦になる日だから22日がいい」という証言と「仏滅ではない」という証言から20100622が正解となる。
+    // 6: 富永老夫婦死亡事件を詳細に調査することで判明する。現状でも情報を集めればわかるが、第四節で明記する。
+    // 7: 第二節にて加藤松の存在があり、彼女が社会的に立場のある存在であることがわかる。
+    //    別の場所で、「夫妻の会社が花札の製造会社であり、それにふさわしい名前をしている」というところから、名前が鶴であるという連想ができる。
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>恐怖の館へようこそ…</h1>
+    <p class="intro">ここでは語られてはいけない話が静かに息をひそめている…</p>
+    <img src="ghost.png" alt="幽霊の画像" class="ghost">
+
+    <div class="story">
+      <h2><a href="story1.html" class="link">芋虫</a></h2>
+      <p>足元に落ちたそれを見た時に、ただ恐怖だけが湧きあがった。</p>
+    </div>
+    <!-- chapter1への絵のヒントとして、時計改変の要素を入れたい。 -->
+
+    <div class="story">
+      <h2><a href="story2.html" class="link">御神渡り</a></h2>
+      <p>湖の氷に刻まれるは、神の足跡。</p>
+    </div>
+    <!-- chapter2への絵のヒントとして、水底に沈む声が聞こえるかもしれない、みたいなことを言っておきたいかも。 -->
+
+    <div class="story">
+      <h2><a href="story3.html" class="link">埋まる生首</a></h2>
+      <p>日本神話で語られなかった、闇の物語。</p>
+    </div>
+
+    <div class="story">
+      <h2><a href="story4.html" class="link">底なし湖</a></h2>
+      <p>底なしの湖の底は、何処へ繋がる？</p>
+    </div>
+
+    <div class="story">
+      <h2><a href="#" onclick="checkPassword(5)" class="link">にょき</a></h2>
+      <p>育つ。</p>
+    </div>
+
+    <div class="story">
+      <h2><a href="#" onclick="checkPassword(6)" class="link">雨漏り</a></h2>
+      <p>それ、本当に建物が原因ですか？</p>
+    </div>
+
+    <div class="story">
+      <h2><a href="#" onclick="checkPassword(7)" class="link">蛙の亡骸</a></h2>
+      <p>死んだカエルは生きていたのか。</p>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 1999 恐怖の館</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 全体設定 */
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* コンテナ設定 */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ヘッダー */
+header {
+  text-align: center;
+}
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+/* 掲示板部分 */
+.board {
+  background-color: #111;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.message {
+  border-bottom: 1px solid #333;
+  padding: 10px 0;
+}
+.message:last-child {
+  border-bottom: none;
+}
+.message h2 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #ff0000;
+}
+.message p {
+  font-size: 1rem;
+  white-space: pre-wrap;
+}
+
+/* 投稿フォーム */
+.form-container {
+  background-color: #111;
+  padding: 20px;
+  border-radius: 5px;
+}
+.form-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #ff0000;
+}
+.form-container input[type="text"],
+.form-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #222;
+  border: 1px solid #333;
+  color: #fff;
+  font-size: 1rem;
+}
+.form-container button {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.form-container button:hover {
+  background-color: #cc0000;
+}

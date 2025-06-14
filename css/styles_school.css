@@ -1,0 +1,72 @@
+body {
+  background-color: #F8F5F0;
+  font-family: "Yu Gothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: #4A4A4A;
+}
+
+.note-container {
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.note-title {
+  font-size: 22px;
+  border-bottom: 2px solid #C4B8A8;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.note-section {
+  margin-bottom: 15px;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #716040;
+}
+
+.note-content {
+  padding-left: 10px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.timestamp {
+  font-size: 13px;
+  text-align: right;
+  color: #AAA;
+  margin-top: 20px;
+}
+
+/* 点滅するカーソル */
+.blinking-cursor {
+  font-size: 16px; /* 必要に応じて調整 */
+  font-weight: bold;
+  color: black;
+  -webkit-animation: blink 1s step-end infinite;
+  -moz-animation: blink 1s step-end infinite;
+  animation: blink 1s step-end infinite;
+}
+
+/* キーフレーム定義 */
+@keyframes blink {
+  from, to { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* エフェクト全体のスタイル（必要に応じて調整） */
+#type-effect-container {
+  padding-left: 10px;
+  font-family: "Yu Gothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+*[style*="width: 300px"][style*="height: 250px"] {
+  display: none !important;
+}

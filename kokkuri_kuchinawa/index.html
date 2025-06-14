@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SInko辞書</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f7f7f7;
+      padding: 20px;
+    }
+    .entry-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0;
+    }
+    a.entry-link {
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .images {
+      margin-top: 20px;
+    }
+    .image-container {
+      margin-bottom: 10px;
+    }
+    .image-container img {
+      max-width: 600px;  /* 最大幅600px */
+      max-height: 400px; /* 最大高さ400px */
+      width: auto;
+      height: auto;
+      display: block;
+      margin: 10px auto; /* 画像を中央に配置 */
+    }
+    .caption {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      margin-top: 5px;
+    }
+    .attribution {
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      margin-top: 2px;
+    }
+  </style>
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="entry-container" id="entry-container"></div>
+  
+  <script>
+    // 辞書項目のデータ定義（images 配列は文字列またはオブジェクトで定義）
+    const entries = {
+      "蛇": {
+        title: "蛇",
+        paragraphs: [
+          "有鱗目ヘビ亜目の爬虫類の総称。(くちなわ)。",
+          "[上接]蛇行、蛇足、蛇口、蛇神"
+        ],
+        images: [
+          { 
+            src: "images/pic01.jpg", 
+            caption: "ニホンマムシ。", 
+            attribution: "出典: Wikipedia (CC BY-SA 3.0)" 
+          }
+        ]
+      },
+      "くちなわ": {
+        title: "くちなわ",
+        paragraphs: [
+          "蛇の古名。また、朽ちた(縄)のこと。"
+        ]
+      },
+      "縄": {
+        title: "縄",
+        paragraphs: [
+          "麻や藁などをより合わせて作った細長いひも。",
+          "[下接]麻縄、投げ縄、泥縄、(注連縄)"
+        ],
+        images: [
+          { 
+            src: "images/pic02.jpg", 
+            caption: "縄。", 
+            attribution: "出典: Wikipedia (CC BY-SA 3.0)" 
+          }
+        ]
+      },
+      "注連縄": {
+        title: "注連縄",
+        paragraphs: [
+          "(神)を祭る神聖な場所を他と区別するために張る縄。"
+        ],
+        images: [
+          { 
+            src: "images/pic03.jpg", 
+            caption: "出雲大社の注連縄。", 
+            attribution: "出典: Wikipedia (CC BY-SA 3.0)" 
+          },
+          { 
+            src: "images/pic04.jpg", 
+            caption: "正月に飾られる注連縄。", 
+            attribution: "出典: Wikipedia (CC BY-SA 3.0)" 
+          }
+        ]
+      },
+      "神": {
+        title: "神",
+        paragraphs: [
+          "人智を超越した存在。また、宗教的な信仰の対象。",
+          "[関連](日本神話)、ギリシャ神話"
+        ],
+        images: [
+          { 
+            src: "images/pic05.jpg", 
+            caption: "天照大御神の画。", 
+            attribution: "出典: Wikipedia (CC BY-SA 3.0)" 
+          }
+        ]
+      },
+      "日本神話": {
+        title: "譌･譛ｬ逾櫁ｩｱ",
+        paragraphs: [
+          "譌･譛ｬ蛻怜ｳｶ縺ｫ蜿､縺上°繧我ｼ昴ｏ繧倶ｼ晄価繧?ｪｬ隧ｱ繧偵∪縺ｨ繧√◆繧ゅ?縲ょ商莠玖ｨ倥ｄ譌･譛ｬ譖ｸ邏?縺ｫ險倥＆繧後※縺?ｋ縲",
+          "[髢｢騾｣]蝗ｽ逕溘∩縲?ｫ伜､ｩ蜴溘?∝?髮ｲ螟ｧ遉ｾ縲∝(悄逹?逾)"
+        ],
+        images: [
+          { 
+            src: "images/pic06.jpg", 
+            caption: "縺薙％縺ｯ縺ｩ縺", 
+            attribution: "出典: Wikipedia (CC BY-SA 3.0)" 
+          }
+        ]
+      },
+      "悄逹?逾": {
+        title: "悄逹?逾",
+        paragraphs: [
+          "(隲剰ｨｪ螟ｧ遉ｾ)縺ｫ逾ｭ繧峨ｌ縺ｦ縺?ｋ蝨溽捩逾槭?"
+        ],
+        images: [
+          { 
+            src: "images/pic07.jpg", 
+            caption: "悄逹?逾", 
+            attribution: "出典: Wikipedia (CC BY-SA 3.0)" 
+          }
+        ]
+      },
+      "隲剰ｨｪ螟ｧ遉ｾ": {
+        title: "Error",
+        paragraphs: [
+          "エラーが発生しました。「隲剰ｨｪ螟ｧ遉ｾ」に関するページは作成されていないか、削除されています。"
+        ]
+      }
+    };
+
+    // 本文中の「(～)」部分をリンクに変換（対応項目があればリンク化）
+    function linkify(text) {
+      return text.replace(/\(([^)]+)\)/g, function(match, p1) {
+        if (entries[p1]) {
+          return '<a href="#" class="entry-link" data-target="' + p1 + '">' + p1 + '</a>';
+        } else {
+          return p1;
+        }
+      });
+    }
+
+    // 指定した項目を読み込み、表示内容を更新する関数
+    function loadEntry(key) {
+      const container = document.getElementById('entry-container');
+      if (!entries[key]) {
+        container.innerHTML = '<p>エラーが発生しました。「' + key + '」に関するページは作成されていないか、削除されています。</p>';
+        return;
+      }
+      const entry = entries[key];
+      let html = '<h2>' + entry.title + '</h2>';
+      entry.paragraphs.forEach(function(para) {
+        html += '<p>' + linkify(para) + '</p>';
+      });
+      
+      // 画像があれば、順番に pic01, pic02... のIDを付与して表示
+      if (entry.images && entry.images.length > 0) {
+        html += '<div class="images">';
+        entry.images.forEach(function(image, index) {
+          let picId = 'pic' + String(index + 1).padStart(2, '0');
+          let src, attribution, caption;
+          if (typeof image === 'string') {
+            src = image;
+            attribution = '';
+            caption = '';
+          } else {
+            src = image.src;
+            attribution = image.attribution || '';
+            caption = image.caption || '';
+          }
+          html += '<div class="image-container">';
+          html += '<img id="' + picId + '" src="' + src + '" alt="Image ' + picId + '">';
+          if (caption) {
+            html += '<div class="caption">' + caption + '</div>';
+          }
+          if (attribution) {
+            html += '<div class="attribution">' + attribution + '</div>';
+          }
+          html += '</div>';
+        });
+        html += '</div>';
+      }
+      
+      container.innerHTML = html;
+      
+      // 各リンクにクリックイベントを設定（クリック時に該当項目へ切り替え）
+      const links = container.querySelectorAll('.entry-link');
+      links.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = this.getAttribute('data-target');
+          loadEntry(target);
+        });
+      });
+    }
+
+    // 初期表示：最初の項目「蛇」を読み込み
+    loadEntry("蛇");
+  </script>
+</body>
+</html>

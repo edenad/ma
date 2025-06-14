@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>縦書きレイアウトサンプル</title>
+<style>
+  /* ページ全体の基本設定 */
+  body {
+    margin: 2cm;                     /* ページ余白を設定 */
+    font-family: "游明朝", "ＭＳ Ｍｉｎｃｈｏ", serif;
+    line-height: 1.6;
+    background-color: #ffffff;       /* 背景色はお好みで */
+  }
+
+  /* 縦書きの基本指定 */
+  .vertical {
+    /* 縦書きにする：ChromeやWord (バージョンにより挙動が異なる) */
+    writing-mode: vertical-rl;       /* 右から左へ縦書き */
+    text-orientation: upright;       /* 縦中横を綺麗に表示 */
+    
+    /* カラム設定（雑誌のように複数段組） */
+    column-count: 2;                /* 2段組 */
+    column-gap: 2em;                /* カラム間の余白 */
+
+    /* ベンダープレフィックス（古いブラウザ対策） */
+    -webkit-column-count: 2;        
+    -webkit-column-gap: 2em;
+    -moz-column-count: 2;
+    -moz-column-gap: 2em;
+
+    /* 縦書きでの文字揃え（好みに合わせ調整） */
+    text-align: justify;
+  }
+
+  /* 見出しデザイン例（縦書きでも使える） */
+  h1, h2 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 24pt;
+  }
+  h2 {
+    font-size: 16pt;
+    border-bottom: 1px solid #000;
+    display: inline-block;
+    margin-bottom: 0.3em;
+  }
+
+  /* 画像を回り込みさせる例 */
+  .img-left {
+    float: left;         /* 左に回り込み */
+    margin: 0 1em 1em 0; /* 右と下に余白 */
+    max-width: 40%;      /* お好みでサイズ調整 */
+  }
+  .img-right {
+    float: right;        /* 右に回り込み */
+    margin: 0 0 1em 1em; /* 左と下に余白 */
+    max-width: 40%;      /* お好みでサイズ調整 */
+  }
+
+  /* キャプション付き画像の例 */
+  .img-box {
+    text-align: center;
+    margin: 1em 0;
+  }
+  .img-caption {
+    font-size: 10pt;
+    color: #666;
+    margin-top: 0.3em;
+  }
+
+  /* 囲み記事の例 */
+  .boxed {
+    border: 1px solid #000;
+    padding: 0.5em;
+    margin: 1em 0;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="vertical">
+  <!-- 大見出し -->
+  <h1>仙台上空に飛来した巨大気球の謎</h1>
+
+  <!-- 中見出し -->
+  <h2>FORTIAN FILE / ファイルNo.XX</h2>
+  
+  <p>
+    ２０２３年某日、仙台の市街地上空に巨大な球体が確認され、大きな話題となりました。
+    多くの市民が目撃したほか、SNS上でも「気球のようだ」「何かの監視装置では？」など、
+    さまざまな憶測が飛び交いました。本記事では、気球目撃情報の詳細や関係者インタビューを通じて、
+    その正体に迫ります。
+  </p>
+
+  <!-- 画像を左回り込みさせる例 -->
+  <img src="https://via.placeholder.com/150x200.png?text=縦書き用+画像" alt="気球写真" class="img-left">
+
+  <p>
+    まず、目撃情報が発生した日の正午頃、◯◯橋付近で撮影された写真には、
+    白い球体が青空に浮かんでいる様子がはっきりと捉えられています。
+    インタビューによると、当時は無風に近い状態で、ほとんど移動していなかったとのこと。
+    この日は天候も良く、多くの人が外出しており、写真や動画がSNS上に急速に拡散されました。
+    一部では「秘密の軍事装置」「UFOの偵察機」などの怪情報も広まったようです。
+  </p>
+
+  <div class="img-box">
+    <img src="https://via.placeholder.com/200x130.png?text=気球+拡大" alt="気球写真拡大" style="max-width: 100%;">
+    <div class="img-caption">▲上空に浮かぶ気球状の物体（SNS投稿より）</div>
+  </div>
+
+  <p>
+    その後の調査で判明したのは、農業用の気象観測気球の一種ではないかという見解でした。
+    気球にぶら下がっている機械が観測用の計測器に似ている点や、気象観測に使う
+    耐久性の高いバルーンと形状がほぼ一致するためです。
+  </p>
+
+  <!-- 囲み枠の例 -->
+  <div class="boxed">
+    <strong>現場検証メモ：</strong><br>
+     - 大きさは直径５～７メートル程度。<br>
+     - 高度は約２,０００～３,０００メートル。<br>
+     - 市街地上空で一定時間停滞。<br>
+     - 当局から正式なアナウンスはなく謎は深まる。
+  </div>
+
+  <h2>関係者インタビュー</h2>
+  <p>
+    目撃者の一人・Aさんによると「当日は雲が少なく、真っ白な気球がよく見えて、
+    かなり大きいと感じました。風が吹いているはずなのに、全然動かなかったんですよね」
+    とのこと。このような状況から、何らかの制御システムを備えた気球である可能性も
+    指摘されています。
+  </p>
+
+  <!-- 画像を右回り込みさせる例 -->
+  <img src="https://via.placeholder.com/140x200.png?text=縦書き用+人物" alt="人物写真" class="img-right">
+
+  <p>
+    一方、気象台の職員B氏は「気球での観測は世界的にも一般的。国内でも特殊な観測のために
+    大型気球を利用するケースはあるが、市街地の真上で行うのは稀」と語ります。
+    さらに、「もし公的機関による実験であれば、管轄部署が周知するはず」と
+    情報不足に首をかしげていました。
+  </p>
+
+  <p>
+    いずれにせよ、正体が明確になっていない以上、今後も情報収集が必要とされます。
+    このファイルでは引き続き、謎の気球に関する情報を追っていく予定です。
+  </p>
+</div>
+
+</body>
+</html>

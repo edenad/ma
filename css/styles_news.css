@@ -1,0 +1,170 @@
+/* ========== リセット ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========== ベース設定 ========== */
+body {
+  font-family:
+    "Noto Sans JP",
+    "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN",
+    "Meiryo UI",
+    Meiryo,
+    sans-serif;
+  line-height: 1.6;
+  background-color: #f5f5f5;
+}
+
+/* ヘッダーのスタイル */
+header {
+  background-color: #2B3E50; /* 落ち着いた青系 */
+  color: #fff;
+  padding: 20px;
+  text-align: left;
+}
+header h1 {
+  font-family:
+    "Noto Serif JP",
+    "Hiragino Mincho ProN",
+    "Hiragino Mincho Pro",
+    "MS PMincho",
+    serif;
+  font-size: 2rem;
+}
+
+/* ジャンルバーのスタイル */
+nav.genre-bar {
+  background-color: #3B4E60;
+}
+nav.genre-bar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+nav.genre-bar li {
+  padding: 12px 20px;
+  cursor: pointer;
+  color: #ccc;
+}
+nav.genre-bar li:hover {
+  background-color: #4A5C6F;
+  color: #fff;
+}
+
+/* メインコンテナ */
+main {
+  max-width: 960px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+}
+
+/* 記事タイトルなど */
+.article-title {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+.article-meta {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+/* 左寄せ画像の回り込み */
+figure.float-left {
+  float: left;
+  margin: 0 20px 20px 0;
+  width: 280px;
+}
+figure.float-left img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+figure.float-left figcaption {
+  font-size: 0.8rem;
+  color: #999;
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* 段落 */
+article p {
+  margin-bottom: 1.2em;
+}
+
+/* 回り込み解除用 */
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* コメント欄 */
+.comments {
+  max-width: 960px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+}
+.comments h2 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+.comment-list {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+}
+.comment-list p {
+  margin-bottom: 8px;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 8px;
+}
+.comment-list p:last-child {
+  border-bottom: none;
+}
+.comments form {
+  display: flex;
+  flex-direction: column;
+}
+.comments form label {
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+.comments form input[type="text"],
+.comments form textarea {
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+.comments form button {
+  width: 120px;
+  padding: 8px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+.comments form button:hover {
+  background-color: #555;
+}
+
+/* フッター */
+footer {
+  background-color: #2B3E50;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* 広告など特定要素を消したい場合の指定（例） */
+*[style*="width: 300px"][style*="height: 250px"] {
+  display: none !important;
+}

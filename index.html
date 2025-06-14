@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ホーム</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <style>
+    /* 各セクションを1画面分の高さに設定 */
+    section {
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      will-change: transform, opacity;
+    }
+    .profile-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    /* Profile セクションの左右2カラム */
+    .profile-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+    .profile-text, .profile-image {
+      flex: 1;
+      min-width: 300px;
+      margin: 10px;
+    }
+    /* Activity セクションの左右2カラム */
+    .activity-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+    .activity-video, .activity-twitter {
+      flex: 1;
+      min-width: 300px;
+      margin: 10px;
+    }
+    /* Photograph セクションのギャラリー */
+    .pixiv-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .pixiv-item {
+      margin: 10px;
+    }
+    .pixiv-item img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+    }
+    /* YouTube iframe のスタイル */
+    #youtube-video-container iframe {
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      border: none;
+    }
+    /* 足跡画像コンテナ */
+    .footage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 150px;
+      will-change: transform, opacity;
+      overflow: hidden;
+    }
+    .footage img {
+      width: 100px;
+      height: auto;
+    }
+  </style>
+  <!-- Twitter ウィジェット用 -->
+  <script async src="/images/widgets.js" charset="utf-8"></script>
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/index/">ホーム</a></li>
+        <li><a href="/about/">基本情報</a></li>
+        <li><a href="/link/">動画リンク</a></li>
+        <li><a href="/others/">そのほか</a></li>
+        <li><a href="/bbs/">交流</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- コンテンツラッパー -->
+  <div class="wrapper">
+    <!-- Main セクション -->
+    <section id="profile-header">
+      <h2>ましろのファンサイト(非公式)</h2>
+    </section>
+
+    <!-- 足跡画像 -->
+    <div class="footage">
+      <img src="/images/footage.png" alt="Footage">
+    </div>
+
+    <!-- Profile セクション -->
+    <section id="profile">
+      <div class="profile-container">
+        <!-- 左側: 紹介文 -->
+        <h2>Profile</h2>
+        <div class="profile-text">
+          <p>
+            進学がきっかけで都会に出てきた大学生。<br>
+            フットワークが軽く、どんなことにも首を突っ込む。<br>
+            最近はとあることに夢中らしいが……。
+          </p>
+        </div>
+        <!-- 右側: 立ち絵画像 -->
+        <div class="profile-image">
+          <img src="/images/tachi-e.png" alt="Standing image"
+               style="width:100%; max-width:400px; object-fit: cover; object-position: top;">
+        </div>
+      </div>
+    </section>
+
+    <!-- 足跡画像 -->
+    <div class="footage">
+      <img src="/images/footage.png" alt="Footage">
+    </div>
+
+    <!-- Activity セクション -->
+    <section id="activity">
+      <h2>Activity</h2>
+      <div class="activity-container">
+        <!-- 左側: 最新動画を埋め込み -->
+        <div class="activity-video" id="youtube-video-container">
+          <p>Loading latest video...</p>
+        </div>
+        <!-- 右側: Twitter 埋め込み -->
+        <div class="activity-twitter">
+          <a class="twitter-timeline" data-height="400" href="https://twitter.com/mashiro2434?ref_src=twsrc%5Etfw">
+            Tweets by mashiro2434
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 足跡画像 -->
+    <div class="footage">
+      <img src="/images/footage.png" alt="Footage">
+    </div>
+
+    <!-- Photograph セクション -->
+    <section id="photograph">
+      <h2>Photograph</h2>
+      <div class="pixiv-gallery" id="pixiv-gallery">
+        <p>Loading illustrations...</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- 右下のソーシャルアイコン -->
+  <div id="social-icons">
+    <a href="https://twitter.com/mashiro2434" target="_blank">
+      <img src="/images/twitter-logo.png" alt="Twitter">
+    </a>
+    <a href="https://www.youtube.com/channel/UCfki3lMEF6SGBFiFfo9kvUA" target="_blank">
+      <img src="/images/youtube-logo.png" alt="YouTube">
+    </a>
+  </div>
+  <script async src="/images/widgets.js" charset="utf-8"></script>
+
+  <!-- スクロールに応じた位置・透明度変更の JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const sections = document.querySelectorAll("section");
+      const footages = document.querySelectorAll(".footage");
+      const randomAngles = [];
+      footages.forEach(() => {
+        const angle = Math.random() * 20 - 10;
+        randomAngles.push(angle);
+      });
+      function updateElements() {
+        sections.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          const sectionCenter = rect.top + rect.height / 2;
+          const viewportCenter = window.innerHeight / 2;
+          const distance = sectionCenter - viewportCenter;
+          const factor = 0.3;
+          section.style.transform = `translateY(${distance * factor}px)`;
+          const opacity = 1 - Math.min(Math.abs(distance) / (window.innerHeight / 2), 1);
+          section.style.opacity = opacity;
+        });
+        footages.forEach((footage, i) => {
+          const rect = footage.getBoundingClientRect();
+          const footageCenter = rect.top + rect.height / 2;
+          const viewportCenter = window.innerHeight / 2;
+          const distance = footageCenter - viewportCenter;
+          const factor = 0.3;
+          const angle = randomAngles[i];
+          footage.style.transform = `translateY(${distance * factor}px) rotate(${angle}deg)`;
+          const opacity = 1 - Math.min(Math.abs(distance) / (window.innerHeight / 2), 1);
+          footage.style.opacity = opacity;
+        });
+      }
+      updateElements();
+      window.addEventListener("scroll", updateElements);
+    });
+  </script>
+
+  <!-- YouTube API を利用して最新動画を取得・埋め込み -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const API_KEY = 'AIzaSyBgBSjLeS-CzqwTsRrFnYv_ny4sUBtANKY';
+      const CHANNEL_ID = 'UCS-XXTgVkotkbkDnGEprXpg';
+      const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=1`;
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          const container = document.getElementById("youtube-video-container");
+          if (data.items && data.items.length > 0) {
+            const videoId = data.items[0].id.videoId;
+            if (videoId) {
+              container.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            } else {
+              container.innerHTML = "<p>No video found.</p>";
+            }
+          } else {
+            container.innerHTML = "<p>No video found.</p>";
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching YouTube video:", error);
+          document.getElementById("youtube-video-container").innerHTML = "<p>Failed to load latest video.</p>";
+        });
+    });
+  </script>
+
+    <!-- フッター -->
+    <footer>
+      <!-- フッター -->
+    <p class="site-credit">
+      このサイトは伊那テラスによって作成されました。<br>
+      &copy; 2022 Ina terrace.
+    </p>
+  </footer>
+</body>
+</html>

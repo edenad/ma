@@ -1,0 +1,133 @@
+/* Google Fonts: Noto Sans JP */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+/* Google FontsからSawarabi Minchoをインポート */
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
+
+
+/* g_コミックホラー恐怖(R) フォントの読み込み */
+@font-face {
+  font-family: 'ComicHorror';
+  src: url('/fonts/g_comichorrorR_freeR.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* サイト全体（全要素）にフォントを適用 */
+* {
+  font-family: 'Sawarabi Mincho', 'g_コミックホラー恐怖(R)', sans-serif;
+}
+/* ===========================================
+   リセット・基本設定
+=========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* リセットと基本設定 */
+body, h1, h2, h3, p, div {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+/* コンテナ */
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px;
+}
+/* プロフィールヘッダー */
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.profile-header img {
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
+}
+.profile-header h1 {
+  font-size: 2.5rem;
+  margin: 10px 0;
+}
+/* 各プロフィールセクション */
+.profile-section {
+  margin-bottom: 20px;
+}
+.profile-section h3 {
+  font-size: 1.2rem;
+  border-bottom: 1px solid #444;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+.profile-section p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+/* リンクのスタイル */
+a {
+  color: #ff0000;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.hidden-text {
+  filter: blur(4px);
+  transition: filter 0.3s ease;
+  /* 連続テキストの場合、inline-block にしておくと効果が安定します */
+  display: inline-block;
+}
+.hidden-text:hover {
+  filter: blur(0);
+}
+
+/* ===========================================
+   全体の背景・フォント
+=========================================== */
+/* サイト全体の背景色を#1E2232に設定 */
+body {
+  background: #1E2232 !important;
+  color: #fff;
+}
+
+/* フッターも同じ背景色に */
+.footer-section {
+  background-color: #1E2232 !important;
+}
+
+/* 画像や動画を入れるための中央ぞろえコンテナ */
+.media-container img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;       /* 親コンテナにフィット */
+  height: auto;      /* アスペクト比を維持 */
+  max-width: 400px;  /* 幅の最大値を設定 */
+  max-height: 300px; /* 高さの最大値を設定 */
+}
+/* レスポンシブ対応（画面幅が狭い場合はコンテナ幅を調整） */
+@media (max-width: 768px) {
+  .media-container {
+    width: 50%;
+  }
+}
+
+/* ===========================================
+   ヘッダー・ナビゲーション
+=========================================== */
+
+*[style*="width: 300px"][style*="height: 250px"] {
+  display: none !important;
+}

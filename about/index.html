@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>基本情報</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <style>
+    section {
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .hidden-message {
+      color: transparent;
+      background-color: transparent;
+      user-select: text;
+    }
+    .bl, .month, .day {
+      display: inline;
+      /* 各色はお好みの淡い色に調整 */
+    }
+    .bl {
+      color: #E0D7FF !important; /* 淡い青（白に近い） */
+    }
+    .day {
+      color: #FFD6D6 !important; /* 淡い赤（白に近い） */
+    }
+  </style>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/home/">ホーム</a></li>
+        <li><a href="/about/">基本情報</a></li>
+        <li><a href="/link/">動画リンク</a></li>
+        <li><a href="/others/">そのほか</a></li>
+        <li><a href="/bbs/">交流</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <div class="wrapper">
+    <section>
+      <h2>基本情報</h2>
+      <p>このサイトは、ましろのファン向け情報をまとめた非公式サイトです。</p>
+      <p>
+        <br>
+        <h4>ホーム</h4>
+        サイトのホームです。最新の配信情報やイラストが並んでいます。<br>
+      </p>
+      <p>
+        <br>
+        <h4>動画リンク</h4>
+        動画、ライブを検索できるサイトです。<br>
+        単なる検索以外にもコメントを検索できる機能があり、配信を見つけやすくなっています。<br>
+      </p>
+      <br>
+      <h4>そのほか</h4>
+      <p>
+        <span class="bl">「</span>しんれい<span class="bl">」「</span>けんさく<span class="bl">」「</span>うた<span class="bl">」</span>等の言葉を入れると反応が...？<br>
+        鳥居に触れると文字が消せます。<br><br>
+        ※濁点や半濁点は使えません。逆説的に、それらはキーワードではありません。<br>
+      </p>
+      <p class="hidden-message">
+        ※入力途中に他のキーワードが入る場合、それはキーワードではありません。例:「うた」がキーワードなら「うたう」「うたかた」等はキーワードでない。<br>
+        ※名前のみ、苗字のみがキーワードになることはありません。例:「山田太郎」を調べたい場合、「やまだ」「たろう」ではヒットしない。<br>
+        ※日時をキーワードに指定する場合、8桁入れる必要があります。例:2018年4月1日を調べたい場合、「20180401」を入力。<br>
+      </p>
+      <h4>交流</h4>
+      <p>
+        <br>
+         交流用の仮掲示板です。いろいろ語り合いましょう。<br>
+         <strong>管理者用スレッドは閲覧制限がかけられています。</strong><br>
+      </p>
+
+      <h4>更新履歴</h4>
+      <p>
+        2022年?月<span class="day">??</span>日 1スレッドを除く新規書き込みの停止。過去スレッドの削除、新サイトへの移行措置を実施。<br>
+        2022年6月<span class="day">01</span>日 前管理者が非アクティブ化を宣言。後任として「ゆめ」が管理者となる。<br>
+        2022年3月<span class="day">11</span>日 ライブ配信検索機能の修正。<br>
+        2021年7月<span class="day">01</span>日 副管理者に「ゆめ」が就任。<br>
+        2020年8月<span class="day">01</span>日 ホームページのレイアウトを修正。<br>
+        2020年2月<span class="day">18</span>日 交流掲示板のスレッド追加。<br>
+        2020年2月<span class="day">01</span>日 ライブ配信検索機能の追加。<br>
+        2020年1月<span class="day">19</span>日 交流掲示板のスレッド追加。<br>
+        2020年1月<span class="day">08</span>日 各種SNSへのリンクを追加。<br>
+        2020年1月<span class="day">01</span>日 前管理者<span class="bl">「</span>　　<span class="bl">」</span>によりサイトが設立。それに伴う交流掲示板の移設。<br>
+      </p>
+
+    </section>
+  </div>
+
+  <!-- 右下のソーシャルアイコン -->
+  <div id="social-icons">
+    <a href="https://twitter.com/mashiro2434" target="_blank">
+      <img src="/images/twitter-logo.png" alt="Twitter">
+    </a>
+    <a href="https://www.youtube.com/channel/UCfki3lMEF6SGBFiFfo9kvUA" target="_blank">
+      <img src="/images/youtube-logo.png" alt="YouTube">
+    </a>
+  </div>
+  
+  <!-- フッター -->
+  <footer>
+    <!-- フッター -->
+  <p class="site-credit">
+    このサイトは伊那テラスによって作成されました。<br>
+    &copy; 2022 Ina terrace.
+  </p>
+</footer>
+</body>
+</html>

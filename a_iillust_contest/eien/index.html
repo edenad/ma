@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styles.css" />
+  <title>えいえんに</title>
+  <style>
+  /* イラスト全体のレイアウト */
+    .illustration {
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    /* 画像のスタイル */
+    .illustration img {
+      max-width: 600px;
+      max-height: 400px;
+      height: auto;
+    }
+    
+    /* キャプションのスタイル */
+    .illustration figcaption {
+      margin-top: 15px;
+      padding: 0 10px;
+    }
+    
+    /* 題名 */
+    .illustration .title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    
+    /* 賞とアイコンをまとめるセクション */
+    .award-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+    
+    /* 賞のテキスト */
+    .award-section .award {
+      font-size: 1.2rem;
+      color: #00d6af;
+    }
+    
+    /* アイコンのスタイル */
+    .award-section .icon img {
+      width: 40px;
+      height: 40px;
+    }
+    
+    /* 説明文 */
+    .illustration .description {
+      /* 左の余白をつける */
+      padding-left: 1.5rem; /* または margin-left:1.5rem などでも可 */
+
+      /* 改行を避ける場合はこれを加える */
+      white-space: nowrap;
+
+      /* 必要に応じて display を inline-block にしておくほうが安定するケースも */
+      display: inline-block;
+
+      /* 既存ルール */
+      text-align: start;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #ccc;
+    }
+    
+  </style>
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="container">
+    <figure class="illustration">
+      <!-- 画像クリックでダウンロード -->
+      <a href="#" id="image-link">
+        <img src="/images/eternal_2.png" alt="永遠の">
+      </a>
+      <figcaption>
+        <h2 class="title">「永遠の始まり」</h2>
+        <div class="award-section">
+          <div class="award">佳作</div>
+        </div>
+        <p class="description">裏があれば、表がある。<br>
+          終わりがあれば、始まりがある。<br>
+          闇があれば、光がある。<br>
+        </p>
+      </figcaption>
+    </figure>
+  </div>
+  <script>
+    document.getElementById('image-link').addEventListener('click', function(event) {
+      event.preventDefault(); // 標準リンク動作の停止
+  
+      const imagePath = '/images/eternal_2.png';
+      const downloadFileName = 'eternal.png';
+      const redirectUrl = "http://mashiro.kutinawa.com/kokkuri_suwa/"; // リンク先のURLに変更してください
+  
+      // 画像をダウンロードするための仮リンクを作成
+      const tempLink = document.createElement('a');
+      tempLink.href = imagePath;
+      tempLink.download = downloadFileName;
+  
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      document.body.removeChild(tempLink);
+  
+      // ダウンロード開始後、指定リンクに遷移
+      setTimeout(() => {
+        window.location.href = redirectUrl;
+      }, 500); // 0.5秒後にリダイレクト（必要に応じて調整可能）
+    });
+  </script>
+</body>
+</html>

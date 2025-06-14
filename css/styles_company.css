@@ -1,0 +1,98 @@
+/* フォントと基本設定 */
+body {
+  font-family: "Yu Gothic", "YuGothic", sans-serif;
+  color: #333;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* ヘッダー全体 */
+header {
+  background-color: #d8f0dc; /* 薄緑 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 2em;
+}
+
+/* ロゴ */
+header img.logo {
+  height: 60px;
+  width: auto;
+}
+
+/* ナビゲーション */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5em;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #2c6535;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #1f4e28;
+}
+
+/* メインセクション */
+main {
+  padding: 2em;
+  background-color: #f6fff7;
+}
+
+h1, .logo-text {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 700;
+  font-size: 2.5em;
+  color: #2c6535;
+}
+
+/* セクションごとの見出し */
+h1, h2 {
+  color: #2f5d3c;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+section {
+  margin-bottom: 2em;
+}
+
+/* フッター */
+footer {
+  background-color: #d8f0dc;
+  color: #555;
+  text-align: center;
+  padding: 1em;
+  font-size: 0.9em;
+}
+.section-with-image.horizontal {
+  display: flex;
+  align-items: flex-start;
+  gap: 2em;
+  margin-top: 1em;
+}
+
+.supervisor-photo {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.supervisor-text {
+  flex: 1;
+  min-width: 0;
+}
+
+*[style*="width: 300px"][style*="height: 250px"] {
+  display: none !important;
+}

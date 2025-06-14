@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>邪魔をしないで</title>
+  <style>
+    /* リセットと基本設定 */
+    body, h1, h2, h3, p, div {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      position: relative;
+      z-index: 0;
+    }
+    .bg-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 200%;
+      background: url("/images/dark.png") no-repeat center top;
+      background-size: cover;
+      filter: blur(8px);
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .container {
+      padding: 20px;
+    }
+    .profile-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .profile-header h1 {
+      font-size: 2.5rem;
+      margin: 10px 0;
+    }
+    .profile-section {
+      font-size: 1rem;
+      text-align: center;
+    }
+    a {
+      color: #ff0000;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .hidden-text {
+      filter: blur(4px);
+      transition: filter 0.3s ease;
+      display: inline-block;
+    }
+    .hidden-text:hover {
+      filter: blur(0);
+    }
+    *[style*="width: 300px"][style*="height: 250px"] {
+      display: none !important;
+    }
+  </style>
+  <!-- document.write を使っていた外部スクリプトの読み込みを非同期に変更 -->
+  <script>
+    (function() {
+      var s = document.createElement('script');
+      s.src = "https://example.com/cross-site-script.js";  // ←実際のURLに置き換えてください
+      s.async = true;
+      document.head.appendChild(s);
+      console.log("Cross-site script loaded asynchronously.");
+    })();
+  </script>
+
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="bg-overlay"></div>
+  <div class="container">
+    <div class="profile-header">
+      <h1>意識の海</h1>
+    </div>
+    <div class="profile-section">
+      全身が海水に浸かる。<br>
+      光が消えていき、視界が真っ暗闇に染まる。<br>
+      もうあの時に戻れることはない。<br>
+      今は静かに、この苦しみと共に深く沈んでいきたい気分なの。<br>
+      だから、ねえ、貴方も。<br>
+      <br>
+      <br><br><br><br><br><br><br><br><br>
+      <span class="hidden-text">一緒に、深く沈んでくれない？</span><br>
+    </div>
+  </div>
+
+  <script>
+    // グローバルな AudioContext と無音オシレーター用変数
+    let globalAudioCtx = null;
+    let silentOscillator = null;
+
+    // ページ内のいかなるクリックでも無音オシレーターを開始／再開する処理
+    document.addEventListener('click', function() {
+      if (!globalAudioCtx) {
+        globalAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        silentOscillator = globalAudioCtx.createOscillator();
+        const silentGain = globalAudioCtx.createGain();
+        silentGain.gain.setValueAtTime(0, globalAudioCtx.currentTime); // 常に無音
+        silentOscillator.connect(silentGain);
+        silentGain.connect(globalAudioCtx.destination);
+        silentOscillator.start();
+        console.log("Silent audio started on click.");
+      } else if (globalAudioCtx.state === 'suspended') {
+        globalAudioCtx.resume().then(function() {
+          console.log("AudioContext resumed on click.");
+        });
+      }
+    });
+
+    // 以下、既存の最下部判定とモールス信号再生の処理
+    let inactivityTimer = null;
+    let startMorseTimer = null;
+
+    // 1秒ごとに最下部をチェック
+    setInterval(checkScroll, 1000);
+
+    function checkScroll() {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        if (inactivityTimer === null) {
+          console.log("最下部に到達。20秒間無操作ならモールス信号を再生します...");
+          startInactivityTimer();
+        }
+      } else {
+        resetTimers();
+      }
+    }
+
+    function startInactivityTimer() {
+      inactivityTimer = setTimeout(startMorseLoop, 20000);
+    }
+
+    function resetTimers() {
+      if (inactivityTimer !== null) {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = null;
+      }
+      clearInterval(startMorseTimer);
+    }
+
+    function startMorseLoop() {
+      console.log("20秒間無操作を検出。モールス信号を再生します...");
+      startMorseTimer = setInterval(playMorse, 15000);
+      playMorse();
+    }
+
+    function playMorse() {
+      const audioCtx = globalAudioCtx;
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
+      // 音量は常に0.1固定
+      gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      const morsePattern = [
+        [0.3, 0.1], [0.1, 0.1], [0.1, 0.1], [0.1, 0.3],
+        [0.1, 0.1], [0.3, 0.1], [0.1, 0.1], [0.1, 0.3],
+        [0.3, 0.1], [0.1, 0.1], [0.1, 0.1], [0.3, 0.3],
+        [0.1, 0.1], [0.3, 0.3], [0.3, 0.1], [0.3, 0.1],
+        [0.1, 0.3]
+      ];
+
+      let time = audioCtx.currentTime;
+      for (const [tone, pause] of morsePattern) {
+        oscillator.frequency.setValueAtTime(600, time);
+        gainNode.gain.setValueAtTime(0.1, time);
+        time += tone;
+        gainNode.gain.setValueAtTime(0, time);
+        time += pause;
+      }
+
+      oscillator.start();
+      oscillator.stop(time);
+    }
+
+    window.addEventListener("scroll", checkScroll);
+    window.addEventListener("mousemove", resetTimers);
+    window.addEventListener("keydown", resetTimers);
+  </script>
+</body>
+</html>
