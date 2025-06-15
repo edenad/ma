@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShinanoSearch</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-gray-50 h-screen m-0 p-0 flex flex-col">
+  <div id="root" class="flex-1 overflow-auto"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useMemo } = React;
+
+    // 完全ローカル：月別平均気象データ
+    const avgWeather = {
+      nagano: [
+        { h: 4, l: -4, ic: '13d' }, { h: 6, l: -3, ic: '13d' }, { h: 11, l: 0, ic: '03d' }, { h: 17, l: 5, ic: '03d' },
+        { h: 22, l: 11, ic: '01d' }, { h: 25, l: 15, ic: '01d' }, { h: 29, l: 20, ic: '01d' }, { h: 31, l: 21, ic: '01d' },
+        { h: 26, l: 16, ic: '02d' }, { h: 19, l: 9, ic: '03d' }, { h: 12, l: 3, ic: '03d' }, { h: 6, l: -2, ic: '13d' }
+      ],
+      matsumoto: [
+        { h: 3, l: -7, ic: '13d' }, { h: 6, l: -5, ic: '13d' }, { h: 11, l: -1, ic: '03d' }, { h: 18, l: 4, ic: '03d' },
+        { h: 23, l: 10, ic: '01d' }, { h: 26, l: 14, ic: '01d' }, { h: 30, l: 19, ic: '01d' }, { h: 32, l: 20, ic: '01d' },
+        { h: 27, l: 15, ic: '02d' }, { h: 20, l: 8, ic: '03d' }, { h: 13, l: 1, ic: '03d' }, { h: 6, l: -4, ic: '13d' }
+      ],
+      suwa: [
+        { h: 2, l: -8, ic: '13d' }, { h: 5, l: -6, ic: '13d' }, { h: 10, l: -1, ic: '03d' }, { h: 16, l: 4, ic: '03d' },
+        { h: 21, l: 9, ic: '02d' }, { h: 24, l: 13, ic: '01d' }, { h: 28, l: 18, ic: '01d' }, { h: 29, l: 19, ic: '01d' },
+        { h: 24, l: 14, ic: '02d' }, { h: 18, l: 7, ic: '03d' }, { h: 11, l: 1, ic: '03d' }, { h: 4, l: -5, ic: '13d' }
+      ]
+    };
+    const currentMonth = new Date().getMonth();
+
+    // データ読み込みフック
+    function useData() {
+      const [data, setData] = useState(null);
+      useEffect(() => {
+        fetch('shinano-search-data.json')
+          .then(r => r.json())
+          .then(setData)
+          .catch(() => alert('データ読み込み失敗'));
+      }, []);
+      return data;
+    }
+
+    // 天気カード
+    function CityCard({ city }) {
+      const arr = avgWeather[city.key];
+      if (!arr) return null;
+      const w = arr[currentMonth];
+      const icon = `https://openweathermap.org/img/wn/${w.ic}@2x.png`;
+      return (
+        <div className="p-4 bg-white rounded shadow flex flex-col items-center min-w-[200px]">
+          <h4 className="font-semibold mb-1">{city.name}</h4>
+          <img src={icon} alt="weather icon" className="w-12 h-12" />
+          <p className="text-2xl font-bold">{w.h}℃</p>
+          <p className="text-gray-600 text-sm">最高{w.h}℃ / 最低{w.l}℃</p>
+        </div>
+      );
+    }
+
+    // メインコンポーネント
+    function ShinanoSearch() {
+      const data = useData();
+      const [input, setInput] = useState('');
+      const [query, setQuery] = useState('');
+      if (!data) return <div className="flex h-screen items-center justify-center text-gray-600">Loading...</div>;
+
+      // 検索ロジック: キーワード配列フィルタ
+      const matched = useMemo(() =>
+        data.coreSites.filter(item => {
+          const q = query.trim().toLowerCase();
+          const count = item.keywords.reduce((acc, kw) => acc + (q.includes(kw.toLowerCase()) ? 1 : 0), 0);
+          return count >= item.keyCount;
+        })
+      , [query, data]);
+
+      return (
+        <div className="flex flex-col items-center py-10">
+          <h1 className="text-4xl font-extrabold text-teal-700 mb-8">ShinanoSearch</h1>
+          <div className="w-full max-w-xl flex gap-2 mb-8">
+            <input
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && setQuery(input)}
+              placeholder="検索キーワードを入力…"
+              className="flex-1 border px-4 py-2 rounded-full"
+            />
+            <button onClick={() => setQuery(input)} className="bg-teal-600 text-white px-4 py-2 rounded-full">検索</button>
+          </div>
+
+          {query === '' ? (
+            <>
+              <div className="w-full max-w-2xl">
+                <div className="mb-6">
+                  <h3 className="font-semibold mb-2">長野県 今日の天気 (平均値)</h3>
+                  <div className="flex gap-4 overflow-x-auto pb-2">
+                    {data.cities.map((c, i) => <CityCard key={i} city={c} />)}
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded shadow">
+                  <h3 className="font-semibold mb-3">先週までのニュース</h3>
+                  <ul className="space-y-1 text-gray-700">
+                    {(() => {
+                      const today = Date.now();
+                      const oneDay = 86400000;
+                      let pool = [];
+                      for (let i = 1; i <= 7; i++) {
+                        const d = new Date(today - i * oneDay);
+                        const w = d.getDay();
+                        (data.weekdayNews[w] || []).forEach(t => pool.push({ title: t, date: `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}` }));
+                      }
+                      return pool.sort(() => 0.5 - Math.random()).slice(0,3).map((n, i) => (
+                        <li key={i} className="flex justify-between border-b pb-1">
+                          <span className="truncate">{n.title}</span>
+                          <span className="text-sm text-gray-500">{n.date}</span>
+                        </li>
+                      ));
+                    })()}
+                  </ul>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="w-full max-w-2xl bg-white rounded shadow">
+              {matched.length ? matched.map((s, i) => (
+                <a key={i} href={s.url} className="block p-4 hover:bg-gray-100 border-b last:border-none">
+                  <h3 className="text-blue-700 underline">{s.title}</h3>
+                  <p className="text-sm text-gray-700 mt-1">{s.desc}</p>
+                </a>
+              )) : <p className="p-4 text-gray-500">該当なし</p>}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<ShinanoSearch />);
+  </script>
+</body>
+</html>
