@@ -130,7 +130,7 @@
                     "results": [
                         {
                             "title": "【代替データ】郷土史研究家、佐倉具親氏の功績",
-                            "url": "history/sakura-gushin-01/",
+                            "url": "#/history/sakura-gushin-01",
                             "description": "長野県の郷土史研究の第一人者である佐倉具親氏。彼の残した数々の文献は、今なお地域の歴史を解き明かす鍵となっている..."
                         }
                     ]
@@ -139,7 +139,7 @@
             "generic_pool": [
                 {
                     "title": "【代替データ】長野県公式観光サイト - Go NAGANO",
-                    "url": "https://www.go-nagano.net/",
+                    "url": "#/official/go-nagano",
                     "description": "さわやかな空気と豊かな自然、あたたかな人情に出会える場所、信州へ。長野県の公式観光ウェブサイトです。"
                 }
             ]
@@ -178,7 +178,6 @@
 
         // --- アプリケーションロジック ---
         let searchDB = null;
-        let dynamicBaseUrl = ''; // 動的なベースURLを保存する変数を定義
         const searchForm = document.getElementById('search-form');
         const searchInput = document.getElementById('search-input');
         const contentArea = document.getElementById('content-area');
@@ -192,8 +191,7 @@
                 return fallbackSearchData;
             }
             try {
-                // JSONファイルのパスを動的に生成
-                const response = await fetch(`${dynamicBaseUrl}search-data.json`);
+                const response = await fetch('search-data.json');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -241,17 +239,12 @@
                 `;
                 const resultsContainer = document.createElement('div');
                 resultsContainer.className = 'space-y-6';
-
                 results.forEach(item => {
-                    // 動的に計算したベースURLを使ってリンクを生成
-                    const isAbsoluteUrl = item.url.startsWith('http');
-                    const fullUrl = isAbsoluteUrl ? item.url : `${dynamicBaseUrl}${item.url}`;
-
                     const card = `
                         <div class="bg-white p-6 rounded-lg search-card">
-                            <a href="${fullUrl}" class="block">
+                            <a href="${item.url}" class="block">
                                 <h3 class="text-xl font-semibold text-blue-700 hover:underline">${item.title}</h3>
-                                <p class="text-sm text-green-700 mt-1">${fullUrl}</p>
+                                <p class="text-sm text-green-700 mt-1">${item.url}</p>
                                 <p class="text-gray-600 mt-2">${item.description}</p>
                             </a>
                         </div>
@@ -283,17 +276,15 @@
 
             let allMatchedResults = [];
             
-            if (searchDB && searchDB.specific) {
-                searchDB.specific.forEach(entry => {
-                    const matchedKeywordsCount = entry.keywords.filter(kw => 
-                        lowerCaseQuery.some(qKw => qKw.includes(kw.toLowerCase()) || kw.toLowerCase().includes(qKw))
-                    ).length;
-                    
-                    if (matchedKeywordsCount >= entry.matchCount) {
-                         allMatchedResults.push(...entry.results);
-                    }
-                });
-            }
+            searchDB.specific.forEach(entry => {
+                const matchedKeywordsCount = entry.keywords.filter(kw => 
+                    lowerCaseQuery.some(qKw => qKw.includes(kw.toLowerCase()) || kw.toLowerCase().includes(qKw))
+                ).length;
+                
+                if (matchedKeywordsCount >= entry.matchCount) {
+                     allMatchedResults.push(...entry.results);
+                }
+            });
 
             if (allMatchedResults.length > 0) {
                 const uniqueResults = allMatchedResults.filter((result, index, self) =>
@@ -302,7 +293,9 @@
                 return uniqueResults;
             }
 
-            if (searchDB && searchDB.generic_pool && searchDB.generic_pool.length > 0) {
+            // Generic search results logic
+            if (searchDB.generic_pool && searchDB.generic_pool.length > 0) {
+                // Deterministic shuffling based on the query
                 const shuffled = [...searchDB.generic_pool].sort((a, b) => {
                     const hashA = getDeterministicHash(a.title + query);
                     const hashB = getDeterministicHash(b.title + query);
@@ -337,12 +330,6 @@
         };
         
         const initializePage = async () => {
-            // *** 変更点：ページの初期化時にベースURLを計算 ***
-            // 現在のHTMLファイルと同じ階層を基準とする
-            const path = window.location.pathname;
-            const lastSlashIndex = path.lastIndexOf('/');
-            dynamicBaseUrl = path.substring(0, lastSlashIndex + 1);
-
             searchDB = await loadSearchData();
             
             const urlParams = new URLSearchParams(window.location.search);
@@ -350,8 +337,7 @@
 
             if (query) {
                 searchInput.value = query;
-                const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
-                handleSearchSubmit(submitEvent);
+                handleSearchSubmit(new Event('submit'));
             } else {
                 renderTopPage();
             }
