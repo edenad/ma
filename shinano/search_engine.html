@@ -112,7 +112,8 @@
         </header>
 
         <main id="content-area">
-            </main>
+            <!-- Content will be rendered here by JavaScript -->
+        </main>
 
         <footer class="text-center text-gray-500 mt-12 text-sm">
             <p>&copy; 2024 Shinano Search. All rights reserved.</p>
@@ -122,9 +123,6 @@
     <script>
         // --- データ管理 ---
         const fallbackSearchData = {
-            "config": {
-                "base_url": "/"
-            },
             "specific": [
                 {
                     "keywords": ["佐倉具親"],
@@ -180,6 +178,7 @@
 
         // --- アプリケーションロジック ---
         let searchDB = null;
+        let dynamicBaseUrl = ''; // *** 変更点：動的なベースURLを保存する変数を定義 ***
         const searchForm = document.getElementById('search-form');
         const searchInput = document.getElementById('search-input');
         const contentArea = document.getElementById('content-area');
@@ -193,7 +192,8 @@
                 return fallbackSearchData;
             }
             try {
-                const response = await fetch('search-data.json');
+                // *** 変更点：JSONファイルのパスを動的に生成 ***
+                const response = await fetch(`${dynamicBaseUrl}search-data.json`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -241,16 +241,11 @@
                 `;
                 const resultsContainer = document.createElement('div');
                 resultsContainer.className = 'space-y-6';
-                
-                // *** 変更点 ***
-                // JSONからベースURLを取得。なければ'/'をデフォルト値とする
-                const baseUrl = searchDB.config?.base_url || '/';
 
                 results.forEach(item => {
-                    // item.urlがhttpで始まる絶対パスか、それ以外（相対パス）かを判定
+                    // *** 変更点：動的に計算したベースURLを使ってリンクを生成 ***
                     const isAbsoluteUrl = item.url.startsWith('http');
-                    // 絶対パスならそのまま、相対パスならbaseUrlを結合
-                    const fullUrl = isAbsoluteUrl ? item.url : `${baseUrl}${item.url}`;
+                    const fullUrl = isAbsoluteUrl ? item.url : `${dynamicBaseUrl}${item.url}`;
 
                     const card = `
                         <div class="bg-white p-6 rounded-lg search-card">
@@ -288,15 +283,17 @@
 
             let allMatchedResults = [];
             
-            searchDB.specific.forEach(entry => {
-                const matchedKeywordsCount = entry.keywords.filter(kw => 
-                    lowerCaseQuery.some(qKw => qKw.includes(kw.toLowerCase()) || kw.toLowerCase().includes(qKw))
-                ).length;
-                
-                if (matchedKeywordsCount >= entry.matchCount) {
-                     allMatchedResults.push(...entry.results);
-                }
-            });
+            if (searchDB && searchDB.specific) {
+                searchDB.specific.forEach(entry => {
+                    const matchedKeywordsCount = entry.keywords.filter(kw => 
+                        lowerCaseQuery.some(qKw => qKw.includes(kw.toLowerCase()) || kw.toLowerCase().includes(qKw))
+                    ).length;
+                    
+                    if (matchedKeywordsCount >= entry.matchCount) {
+                         allMatchedResults.push(...entry.results);
+                    }
+                });
+            }
 
             if (allMatchedResults.length > 0) {
                 const uniqueResults = allMatchedResults.filter((result, index, self) =>
@@ -305,9 +302,7 @@
                 return uniqueResults;
             }
 
-            // Generic search results logic
-            if (searchDB.generic_pool && searchDB.generic_pool.length > 0) {
-                // Deterministic shuffling based on the query
+            if (searchDB && searchDB.generic_pool && searchDB.generic_pool.length > 0) {
                 const shuffled = [...searchDB.generic_pool].sort((a, b) => {
                     const hashA = getDeterministicHash(a.title + query);
                     const hashB = getDeterministicHash(b.title + query);
@@ -342,6 +337,10 @@
         };
         
         const initializePage = async () => {
+            // *** 変更点：ページの初期化時にベースURLを計算 ***
+            // 例: .../ma/shinano/search.html -> .../ma/ になる
+            dynamicBaseUrl = new URL('..', window.location.href).href;
+
             searchDB = await loadSearchData();
             
             const urlParams = new URLSearchParams(window.location.search);
@@ -349,7 +348,8 @@
 
             if (query) {
                 searchInput.value = query;
-                handleSearchSubmit(new Event('submit'));
+                const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
+                handleSearchSubmit(submitEvent);
             } else {
                 renderTopPage();
             }
@@ -360,3 +360,4 @@
     </script>
 </body>
 </html>
+
