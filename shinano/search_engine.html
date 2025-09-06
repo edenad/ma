@@ -178,7 +178,7 @@
 
         // --- アプリケーションロジック ---
         let searchDB = null;
-        let dynamicBaseUrl = ''; // *** 変更点：動的なベースURLを保存する変数を定義 ***
+        let dynamicBaseUrl = ''; // 動的なベースURLを保存する変数を定義
         const searchForm = document.getElementById('search-form');
         const searchInput = document.getElementById('search-input');
         const contentArea = document.getElementById('content-area');
@@ -192,7 +192,7 @@
                 return fallbackSearchData;
             }
             try {
-                // *** 変更点：JSONファイルのパスを動的に生成 ***
+                // JSONファイルのパスを動的に生成
                 const response = await fetch(`${dynamicBaseUrl}search-data.json`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -243,7 +243,7 @@
                 resultsContainer.className = 'space-y-6';
 
                 results.forEach(item => {
-                    // *** 変更点：動的に計算したベースURLを使ってリンクを生成 ***
+                    // 動的に計算したベースURLを使ってリンクを生成
                     const isAbsoluteUrl = item.url.startsWith('http');
                     const fullUrl = isAbsoluteUrl ? item.url : `${dynamicBaseUrl}${item.url}`;
 
@@ -338,8 +338,10 @@
         
         const initializePage = async () => {
             // *** 変更点：ページの初期化時にベースURLを計算 ***
-            // 例: .../ma/shinano/search.html -> .../ma/ になる
-            dynamicBaseUrl = new URL('..', window.location.href).href;
+            // 現在のHTMLファイルと同じ階層を基準とする
+            const path = window.location.pathname;
+            const lastSlashIndex = path.lastIndexOf('/');
+            dynamicBaseUrl = path.substring(0, lastSlashIndex + 1);
 
             searchDB = await loadSearchData();
             
