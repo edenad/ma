@@ -123,6 +123,9 @@
     <script>
         // --- データ管理 ---
         const fallbackSearchData = {
+            "config": {
+                "base_url": ""
+            },
             "specific": [
                 {
                     "keywords": ["佐倉具親"],
@@ -239,12 +242,16 @@
                 `;
                 const resultsContainer = document.createElement('div');
                 resultsContainer.className = 'space-y-6';
+
+                const baseUrl = searchDB.config?.base_url || '';
+
                 results.forEach(item => {
+                    const finalUrl = item.url.startsWith('http') ? item.url : baseUrl + item.url;
                     const card = `
                         <div class="bg-white p-6 rounded-lg search-card">
-                            <a href="${item.url}" class="block">
+                            <a href="${finalUrl}" target="_blank" rel="noopener noreferrer" class="block">
                                 <h3 class="text-xl font-semibold text-blue-700 hover:underline">${item.title}</h3>
-                                <p class="text-sm text-green-700 mt-1">${item.url}</p>
+                                <p class="text-sm text-green-700 mt-1">${finalUrl}</p>
                                 <p class="text-gray-600 mt-2">${item.description}</p>
                             </a>
                         </div>
@@ -348,4 +355,3 @@
     </script>
 </body>
 </html>
-
