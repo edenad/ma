@@ -112,8 +112,7 @@
         </header>
 
         <main id="content-area">
-            <!-- Content will be rendered here by JavaScript -->
-        </main>
+            </main>
 
         <footer class="text-center text-gray-500 mt-12 text-sm">
             <p>&copy; 2024 Shinano Search. All rights reserved.</p>
@@ -123,6 +122,9 @@
     <script>
         // --- データ管理 ---
         const fallbackSearchData = {
+            "config": {
+                "base_url": "/"
+            },
             "specific": [
                 {
                     "keywords": ["佐倉具親"],
@@ -130,7 +132,7 @@
                     "results": [
                         {
                             "title": "【代替データ】郷土史研究家、佐倉具親氏の功績",
-                            "url": "#/history/sakura-gushin-01",
+                            "url": "history/sakura-gushin-01/",
                             "description": "長野県の郷土史研究の第一人者である佐倉具親氏。彼の残した数々の文献は、今なお地域の歴史を解き明かす鍵となっている..."
                         }
                     ]
@@ -139,7 +141,7 @@
             "generic_pool": [
                 {
                     "title": "【代替データ】長野県公式観光サイト - Go NAGANO",
-                    "url": "#/official/go-nagano",
+                    "url": "https://www.go-nagano.net/",
                     "description": "さわやかな空気と豊かな自然、あたたかな人情に出会える場所、信州へ。長野県の公式観光ウェブサイトです。"
                 }
             ]
@@ -239,12 +241,22 @@
                 `;
                 const resultsContainer = document.createElement('div');
                 resultsContainer.className = 'space-y-6';
+                
+                // *** 変更点 ***
+                // JSONからベースURLを取得。なければ'/'をデフォルト値とする
+                const baseUrl = searchDB.config?.base_url || '/';
+
                 results.forEach(item => {
+                    // item.urlがhttpで始まる絶対パスか、それ以外（相対パス）かを判定
+                    const isAbsoluteUrl = item.url.startsWith('http');
+                    // 絶対パスならそのまま、相対パスならbaseUrlを結合
+                    const fullUrl = isAbsoluteUrl ? item.url : `${baseUrl}${item.url}`;
+
                     const card = `
                         <div class="bg-white p-6 rounded-lg search-card">
-                            <a href="${item.url}" class="block">
+                            <a href="${fullUrl}" class="block">
                                 <h3 class="text-xl font-semibold text-blue-700 hover:underline">${item.title}</h3>
-                                <p class="text-sm text-green-700 mt-1">${item.url}</p>
+                                <p class="text-sm text-green-700 mt-1">${fullUrl}</p>
                                 <p class="text-gray-600 mt-2">${item.description}</p>
                             </a>
                         </div>
@@ -348,4 +360,3 @@
     </script>
 </body>
 </html>
-
