@@ -38,6 +38,7 @@
             animation: spin 1s linear infinite; display: inline-block;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .hidden-section { display: none; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -63,7 +64,7 @@
         </div>
 
         <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md space-y-10">
-            <!-- (募集要項と応募規約のセクションは変更なし) -->
+            <!-- 募集要項 -->
              <section id="details">
                 <h3 class="text-2xl font-bold text-gray-800 mb-4">募集要項</h3>
                 <div class="border-t pt-4 space-y-4">
@@ -94,48 +95,48 @@
                     </div>
                 </div>
             </section>
-            <section id="terms">
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">応募規約</h3>
-                <div class="border-t pt-4">
-                    <div class="terms-content border p-4 bg-gray-100 rounded text-sm text-gray-600">
-                        <p class="font-bold mb-2">第1条 (個人情報の取得と利用)</p>
-                        <p class="mb-4">当社は採用選考のため、応募者の個人情報（心理的、生理的データを含む）を取得し、適合性評価に利用することに同意するものとします。</p>
-                        <p class="font-bold mb-2">第2条 (守秘義務)</p>
-                        <p class="mb-4">応募者は、採用過程で知り得た当社の一切の情報を、第三者に開示、漏洩しないものとします。</p>
-                        <p class="font-bold mb-2">第3条 (禁止行為)</p>
-                        <p class="mb-4">以下のすべての行為は、内定の取り消し理由になります。<br>
-                            1.他者とログイン情報を共有する行為。
-                            <br>2.コンピュータウイルスをはじめとしたプログラムを本サイトに送信する行為。
-                            <br>3.N認証において、不正ツールを用いて突破する行為。
-                            <br>4.Webテストの内容を他社と共有する行為。
-                            <br>5.そのほか、犯罪に結びつく行為、その他公序良俗に反する行為。</p>
-                        <p class="font-bold mb-2">第4条 (選考の中断)</p>
-                        <p class="mb-4">第3条の禁止行為を含めて、当社は当社の包括的な判断に基づき選考を中断できるものとします。</p>
-                    </div>
-                    <div class="mt-4">
-                        <label class="flex items-center">
-                            <input type="checkbox" id="terms-agree" class="form-checkbox h-5 w-5 text-blue-800">
-                            <span class="ml-2 text-gray-700">上記規約に同意する</span>
-                        </label>
-                    </div>
-                </div>
-            </section>
-
+            
             <!-- エントリーフォーム -->
             <section id="entry-form">
                  <h3 class="text-2xl font-bold text-gray-800 mb-4">エントリー</h3>
                  <div class="border-t pt-4">
-                    <div class="mb-8 text-center">
-                        <p class="text-gray-600 mb-4">当社の選考に進むには、N認証が必要です。(位置情報の利用を許可してください)</p>
-                        <div class="flex justify-center"><button class="n-auth-button" id="n-auth-btn"><span class="n-auth-text" id="n-auth-text">N認証</span></button></div>
-                        <p id="n-auth-message" class="text-sm mt-3 h-5 text-center text-red-600 font-semibold"></p>
-                    </div>
-                    <div class="flex border-b mb-4">
+                    <!-- タブ -->
+                    <div class="flex border-b mb-6">
                         <button class="tab-link active py-2 px-4 font-semibold border-b-2" data-tab="register">新規登録</button>
                         <button class="tab-link py-2 px-4 font-semibold border-b-2 border-transparent" data-tab="login">ログイン</button>
                     </div>
 
-                    <div id="register" class="tab-content active">
+                    <!-- 新規登録タブのコンテンツ -->
+                    <div id="register" class="tab-content active space-y-10">
+                        <!-- N認証 -->
+                        <div id="n-auth-section" class="text-center">
+                            <p class="text-gray-600 mb-4">当社の選考に進むには、N認証が必要です。(位置情報の利用を許可してください)</p>
+                            <div class="flex justify-center"><button class="n-auth-button" id="n-auth-btn"><span class="n-auth-text" id="n-auth-text">N認証</span></button></div>
+                            <p id="n-auth-message" class="text-sm mt-3 h-5 text-center text-red-600 font-semibold"></p>
+                        </div>
+                        <!-- 応募規約 -->
+                        <div id="terms-section">
+                            <h4 class="text-xl font-bold text-gray-800 mb-4">応募規約</h4>
+                            <div class="terms-content border p-4 bg-gray-100 rounded text-sm text-gray-600">
+                                <p class="font-bold mb-2">第1条 (個人情報の取得と利用)</p>
+                                <p class="mb-4">当社は採用選考のため、応募者の個人情報（心理的、生理的データを含む）を取得し、適合性評価に利用することに同意するものとします。</p>
+                                <p class="font-bold mb-2">第2条 (守秘義務)</p>
+                                <p class="mb-4">応募者は、採用過程で知り得た当社の一切の情報を、第三者に開示、漏洩しないものとします。</p>
+                                <p class="font-bold mb-2">第3条 (禁止行為)</p>
+                                <p class="mb-4">以下のすべての行為は、内定の取り消し理由になります。<br>
+                                    1.他者とログイン情報を共有する行為。
+                                    <br>2.コンピュータウイルスをはじめとしたプログラムを本サイトに送信する行為。
+                                    <br>3.N認証において、不正ツールを用いて突破する行為。
+                                    <br>4.Webテストの内容を他社と共有する行為。
+                                    <br>5.そのほか、犯罪に結びつく行為、その他公序良俗に反する行為。</p>
+                                <p class="font-bold mb-2">第4条 (選考の中断)</p>
+                                <p class="mb-4">第3条の禁止行為を含めて、当社は当社の包括的な判断に基づき選考を中断できるものとします。</p>
+                            </div>
+                            <div class="mt-4">
+                                <label class="flex items-center"><input type="checkbox" id="terms-agree" class="form-checkbox h-5 w-5 text-blue-800"><span class="ml-2 text-gray-700">上記規約に同意する</span></label>
+                            </div>
+                        </div>
+                        <!-- 登録フォーム -->
                         <form id="register-form" class="space-y-4">
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700">ユーザーネーム(仮名でも構いませんが、内定時に確認を行います)</label>
@@ -153,6 +154,7 @@
                         </form>
                     </div>
 
+                    <!-- ログインタブのコンテンツ -->
                     <div id="login" class="tab-content">
                          <form id="login-form" class="space-y-4">
                             <div>
@@ -163,7 +165,7 @@
                                 <label for="password_login" class="block text-sm font-medium text-gray-700">パスワード</label>
                                 <input type="password" id="password_login" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
                             </div>
-                            <button type="submit" class="w-full bg-blue-800 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition-colors shadow-md">ログイン</button>
+                            <button type="submit" class="w-full bg-blue-800 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition-colors shadow-md">ログインして進む</button>
                         </form>
                     </div>
                  </div>
@@ -178,35 +180,63 @@
     
     <script>
         // --- 重要: ここにデプロイしたウェブアプリのURLを貼り付けてください ---
-        const SPREADSHEET_URL = 'ここにウェブアプリのURLを貼り付け';
+        const SPREADSHEET_URL = 'https://script.google.com/macros/s/AKfycbyJ0ZdeEURcLg7G7KyguIkdeHZDH7uFk9dVQDVmJ8JAZufJHVMn52Wd0DROn720tiSH/exec';
 
+        // 要素の取得
         const agreeCheckbox = document.getElementById('terms-agree');
         const submitButton = document.getElementById('submit-btn');
         const nAuthButton = document.getElementById('n-auth-btn');
         const tabs = document.querySelectorAll('.tab-link');
+        const contents = document.querySelectorAll('.tab-content');
         const registerForm = document.getElementById('register-form');
         const loginForm = document.getElementById('login-form');
+        const nAuthSection = document.getElementById('n-auth-section');
+        const termsSection = document.getElementById('terms-section');
+
+        // 状態変数
         let nAuthCompleted = false;
         let isGKeyPressed = false;
 
-        // Gキーが押されているかどうかの状態を監視
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'g' || e.key === 'G') {
-                isGKeyPressed = true;
-            }
-        });
-        window.addEventListener('keyup', (e) => {
-            if (e.key === 'g' || e.key === 'G') {
-                isGKeyPressed = false;
-            }
-        });
+        // --- イベントリスナー ---
 
+        // Gキーの状態監視
+        window.addEventListener('keydown', (e) => { if (e.key === 'g' || e.key === 'G') isGKeyPressed = true; });
+        window.addEventListener('keyup', (e) => { if (e.key === 'g' || e.key === 'G') isGKeyPressed = false; });
+
+        // N認証ボタンのクリック
+        nAuthButton.addEventListener('click', handleNAuthClick);
+
+        // 規約同意チェックボックスの変更
+        agreeCheckbox.addEventListener('change', updateSubmitButtonState);
+
+        // タブの切り替え
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(item => item.classList.remove('active'));
+                contents.forEach(item => item.classList.remove('active'));
+                tab.classList.add('active');
+                const targetContent = document.getElementById(tab.dataset.tab);
+                targetContent.classList.add('active');
+                
+                // ログイン時は認証セクションを非表示
+                const isRegisterTab = tab.dataset.tab === 'register';
+                nAuthSection.style.display = isRegisterTab ? 'block' : 'none';
+                termsSection.style.display = isRegisterTab ? 'block' : 'none';
+            });
+        });
+        
+        // 新規登録フォームの送信
+        registerForm.addEventListener('submit', handleRegisterSubmit);
+
+        // ログインフォームの送信
+        loginForm.addEventListener('submit', handleLoginSubmit);
+
+        // --- 関数 ---
 
         function updateSubmitButtonState() {
             submitButton.disabled = !(agreeCheckbox.checked && nAuthCompleted);
         }
 
-        // isInsideNagano関数とN認証のロジックは変更なし
         function isInsideNagano(latitude, longitude) {
             const naganoPolygon = [[138.4, 37.0], [138.8, 36.9], [138.7, 36.5], [138.3, 36.6], [138.5, 36.2], [138.2, 35.9], [138.4, 35.6], [137.9, 35.5], [137.5, 35.8], [137.3, 36.2], [137.7, 36.5], [137.9, 36.9], [138.4, 37.0]];
             let isInside = false;
@@ -219,48 +249,40 @@
             return isInside;
         }
 
-        function completeAuth() {
+        function completeAuth(message) {
             const nAuthText = document.getElementById('n-auth-text');
             const nAuthMessage = document.getElementById('n-auth-message');
             nAuthCompleted = true;
             nAuthButton.classList.add('n-auth-complete');
             nAuthText.textContent = '認証完了';
-            nAuthMessage.textContent = 'N認証が完了しました。';
+            nAuthMessage.textContent = message || 'N認証が完了しました。';
             nAuthMessage.classList.remove('text-gray-600', 'text-red-600');
             nAuthMessage.classList.add('text-green-600');
             updateSubmitButtonState();
         }
 
-
-        nAuthButton.addEventListener('click', () => {
+        function handleNAuthClick() {
             const nAuthText = document.getElementById('n-auth-text');
             const nAuthMessage = document.getElementById('n-auth-message');
-
             if (nAuthCompleted) return;
 
-            // Gキーが押されていたら、位置情報チェックをバイパス
             if (isGKeyPressed) {
-                nAuthMessage.textContent = 'デバッグモードで認証をスキップしました。';
-                completeAuth();
+                completeAuth('デバッグモードで認証をスキップしました。');
                 return;
             }
             
             nAuthText.textContent = '確認中...';
             nAuthMessage.textContent = '位置情報を確認しています...';
-            nAuthMessage.classList.remove('text-red-600', 'text-green-600');
-            nAuthMessage.classList.add('text-gray-600');
+            nAuthMessage.className = 'text-sm mt-3 h-5 text-center text-gray-600 font-semibold';
             nAuthButton.disabled = true;
+
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
                     if (isInsideNagano(latitude, longitude)) {
                         completeAuth();
                     } else {
-                        nAuthMessage.textContent = 'エラー: 長野県外からは登録できません。';
-                        nAuthMessage.classList.add('text-red-600');
-                        nAuthText.textContent = 'N認証';
-                        nAuthButton.disabled = false;
-                        setTimeout(() => { nAuthMessage.textContent = ''; }, 4000);
+                        handleNAuthError('エラー: 長野県外からは登録できません。');
                     }
                 },
                 (error) => {
@@ -268,34 +290,29 @@
                     if(error.code === 1) message = "エラー: 位置情報の利用が許可されていません。";
                     if(error.code === 2) message = "エラー: 位置情報を取得できませんでした。";
                     if(error.code === 3) message = "エラー: 位置情報の取得がタイムアウトしました。";
-                    nAuthMessage.textContent = message;
-                    nAuthMessage.classList.add('text-red-600');
-                    nAuthText.textContent = 'N認証';
-                    nAuthButton.disabled = false;
-                    setTimeout(() => { nAuthMessage.textContent = ''; }, 4000);
+                    handleNAuthError(message);
                 },
                 { timeout: 10000, enableHighAccuracy: true }
             );
-        });
+        }
 
-        agreeCheckbox.addEventListener('change', updateSubmitButtonState);
+        function handleNAuthError(message) {
+            const nAuthText = document.getElementById('n-auth-text');
+            const nAuthMessage = document.getElementById('n-auth-message');
+            nAuthMessage.textContent = message;
+            nAuthMessage.className = 'text-sm mt-3 h-5 text-center text-red-600 font-semibold';
+            nAuthText.textContent = 'N認証';
+            nAuthButton.disabled = false;
+            setTimeout(() => { nAuthMessage.textContent = ''; }, 5000);
+        }
 
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const contents = document.querySelectorAll('.tab-content');
-                tabs.forEach(item => item.classList.remove('active'));
-                contents.forEach(item => item.classList.remove('active'));
-                tab.classList.add('active');
-                document.getElementById(tab.dataset.tab).classList.add('active');
-            });
-        });
-        
-        registerForm.addEventListener('submit', async (e) => {
+        async function handleRegisterSubmit(e) {
             e.preventDefault();
-            if (SPREADSHEET_URL === 'https://script.google.com/macros/s/AKfycbyJ0ZdeEURcLg7G7KyguIkdeHZDH7uFk9dVQDVmJ8JAZufJHVMn52Wd0DROn720tiSH/exec') {
-                alert('管理者：SPREADSHEET_URLを設定してください。');
+            if (SPREADSHEET_URL === 'ここにウェブアプリのURLを貼り付け') {
+                alert('【管理者向けエラー】\nSPREADSHEET_URLが設定されていません。\nHTMLファイル内のURLを、デプロイしたウェブアプリのものに書き換えてください。');
                 return;
             }
+
             const btnText = submitButton.querySelector('.btn-text');
             const loader = submitButton.querySelector('.loader');
             const registerError = document.getElementById('register-error');
@@ -309,32 +326,43 @@
             const password = document.getElementById('password_reg').value;
 
             try {
+                // fetchはno-corsモードだと常に成功したように振る舞い、catchブロックに入らない
+                // ネットワークエラーなどを検知するために、ここではcorsモードを試行する
                 const response = await fetch(SPREADSHEET_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // CORSエラーを回避するため
+                    mode: 'cors', // CORSモードに変更
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password }),
+                    redirect: 'follow'
                 });
+
+                if (!response.ok) {
+                    // サーバー側でエラーが発生した場合 (Apps Scriptがエラーを返した場合など)
+                    throw new Error(`サーバーエラーが発生しました (Status: ${response.status})`);
+                }
                 
-                // no-corsモードではレスポンス内容を確認できないため、成功したと見なして進める
+                // 成功時
                 localStorage.setItem('username', username);
                 window.location.href = '../../portal/';
 
             } catch (error) {
-                registerError.textContent = '登録中にエラーが発生しました。時間をおいて再試行してください。';
+                // ネットワークエラー、CORSエラー、サーバーエラーなど
+                registerError.textContent = `登録エラー: ${error.message}。URL設定やネットワークを確認してください。`;
                 btnText.classList.remove('hidden');
                 loader.classList.add('hidden');
-                submitButton.disabled = false;
+                // 再試行できるようにボタンを有効化
+                submitButton.disabled = !(agreeCheckbox.checked && nAuthCompleted);
             }
-        });
+        }
 
-        loginForm.addEventListener('submit', (e) => {
+        function handleLoginSubmit(e) {
             e.preventDefault();
             const username = document.getElementById('login_name').value;
             localStorage.setItem('username', username);
             window.location.href = '../../portal/';
-        });
+        }
 
+        // 初期化
         updateSubmitButtonState();
     </script>
 </body>
