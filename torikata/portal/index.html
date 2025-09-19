@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>応募者専用ポータル - 取方ソリューションズ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <!-- ヘッダー -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-900"><a href="./">取方ソリューションズ 採用ポータル</a></h1>
+            <nav class="space-x-6">
+                <a href="../index.html" class="text-gray-600 hover:text-blue-800 transition-colors">コーポレートサイトへ</a>
+                <a href="#" id="logout-btn" class="text-gray-600 hover:text-blue-800 transition-colors">ログアウト</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900">マイページ</h2>
+            <p class="mt-2 text-gray-500">応募者様専用のページです。</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- 左カラム -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- エントリーシート -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-300 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        <h3 class="text-2xl font-bold text-gray-800">エントリーシート</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">エントリーシートはご登録から数日後にご確認いただけます。準備が整い次第、改めてご案内いたします。</p>
+                    <button class="w-full bg-gray-300 text-white font-bold py-3 px-4 rounded cursor-not-allowed">準備中</button>
+                </div>
+
+                <!-- 各種社内情報 -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-800 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                        <h3 class="text-2xl font-bold text-gray-800">各種社内情報</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">ご応募にあたり、事前にご確認いただきたい資料を掲載しております。ぜひご一読ください。</p>
+                    <a href="./info/" class="w-full block bg-blue-800 text-white font-bold py-3 px-4 rounded hover:bg-blue-700 transition-colors text-center">閲覧する</a>
+                </div>
+            </div>
+
+            <!-- 右カラム -->
+            <div class="lg:col-span-1 space-y-8">
+                 <!-- Welcome Message -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 id="welcome-message" class="text-xl font-bold text-gray-800 text-center">こんにちは、ゲスト様！</h3>
+                </div>
+                 <!-- お知らせ -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-800 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                        <h3 class="text-2xl font-bold text-gray-800">お知らせ</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">当社からのご連絡事項はこちらに掲載されます。定期的にご確認ください。</p>
+                    <a href="./notifications/" class="w-full block bg-blue-800 text-white font-bold py-3 px-4 rounded hover:bg-blue-700 transition-colors text-center">確認する</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-6 py-8">
+            <div class="text-center text-sm text-gray-500">
+                <p>&copy; 2025 Torikata Solutions Inc. All Rights Reserved. TKS-75</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const welcomeMessage = document.getElementById('welcome-message');
+            const logoutButton = document.getElementById('logout-btn');
+
+            const username = localStorage.getItem('username');
+
+            if (username) {
+                welcomeMessage.textContent = `こんにちは、${username}様！`;
+            } else {
+                // ユーザー名がなければエントリーページに強制的に戻す
+                alert('ログイン情報がありません。エントリーページに戻ります。');
+                window.location.href = '../recruit/entry/';
+            }
+
+            logoutButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('username');
+                window.location.href = '../index.html';
+            });
+        });
+    </script>
+</body>
+</html>
+
