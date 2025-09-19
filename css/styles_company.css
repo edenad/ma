@@ -56,10 +56,12 @@ h1, .logo-text {
 }
 
 /* セクションごとの見出し */
-h1, h2 {
+main h1, main h2 {
   color: #2f5d3c;
   margin-top: 1em;
   margin-bottom: 0.5em;
+  border-bottom: 2px solid #a8d5b0;
+  padding-bottom: 0.3em;
 }
 
 section {
@@ -93,6 +95,77 @@ footer {
   min-width: 0;
 }
 
+/* 会社概要テーブル */
+.company-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+
+.company-info-table th,
+.company-info-table td {
+  border: 1px solid #e0e0e0;
+  padding: 12px 15px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.company-info-table th {
+  background-color: #f6fff7;
+  width: 25%;
+  font-weight: bold;
+}
+
+/* 沿革タイムライン */
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin-top: 1em;
+}
+.timeline li {
+  position: relative;
+  padding-left: 2em;
+  margin-bottom: 1em;
+}
+.timeline li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  background: #2c6535;
+  border-radius: 50%;
+}
+.timeline li span {
+  font-weight: bold;
+  margin-right: 1em;
+  color: #2f5d3c;
+}
+
+
+/* アクセスマップ */
+.access-map {
+    margin-top: 2em;
+}
+
+.map-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 アスペクト比 */
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 *[style*="width: 300px"][style*="height: 250px"] {
   display: none !important;
 }
+

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通年採用エントリー - 取方ソリューションズ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .terms-content { height: 200px; overflow-y: scroll; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-link.active { border-color: #1e3a8a; color: #1e3a8a; }
+        .n-auth-button {
+            width: 100px; height: 100px; border-radius: 50%;
+            background: linear-gradient(145deg, #2a4aa5, #1a2c6b);
+            color: white; font-size: 20px; font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; border: 3px solid #4a6fbe;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3), inset 0 -4px 8px rgba(0,0,0,0.4);
+            transition: all 0.3s ease-in-out;
+            text-shadow: 0 2px 3px rgba(0,0,0,0.5);
+        }
+        .n-auth-button:hover:not(.n-auth-complete):not(:disabled) {
+            background: linear-gradient(145deg, #3a5ab5, #2a3c7b);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.35), inset 0 -4px 8px rgba(0,0,0,0.4);
+        }
+        .n-auth-button.n-auth-complete {
+            background: linear-gradient(145deg, #10B981, #059669);
+            border-color: #34D399; cursor: default;
+        }
+        .n-auth-button:disabled { cursor: wait; opacity: 0.8; }
+        .loader {
+            border: 4px solid #f3f3f3; border-top: 4px solid #3498db;
+            border-radius: 50%; width: 24px; height: 24px;
+            animation: spin 1s linear infinite; display: inline-block;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- ヘッダー -->
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-900"><a href="../../index.html">取方ソリューションズ</a></h1>
+            <nav class="hidden md:flex space-x-8">
+                <a href="../" class="text-blue-800 font-bold">採用情報</a>
+                <a href="../../ir/" class="text-gray-600 hover:text-blue-800 transition-colors">IR情報</a>
+                <a href="../../company/" class="text-gray-600 hover:text-blue-800 transition-colors">企業情報</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-900">通年採用 エントリー</h2>
+            <p class="mt-2 text-gray-500">Year-round Recruitment Entry</p>
+            <div class="w-24 h-1 bg-blue-800 mx-auto mt-4"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md space-y-10">
+            <!-- (募集要項と応募規約のセクションは変更なし) -->
+             <section id="details">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">募集要項</h3>
+                <div class="border-t pt-4 space-y-4">
+                    <div>
+                        <h4 class="text-lg font-semibold">労働条件</h4>
+                        <p class="text-gray-600 mt-1">
+                            <br>・勤務地：長野県
+                            <br>・諸手当：時間外労働手当、交通手当ほか
+                            <br>・勤務時間：8:45～17:30
+                            <br>・給与：経験・能力を考慮の上、当社規定により決定。最低23万円から。
+                            <br>・休日：年間121日（年末年始・夏季・GW含む)
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold">求める人物像</h4>
+                        <p class="text-gray-600 mt-1">
+                            <br>・長野県の文化に興味を持ち、積極的に調査を進められる方
+                            <br>・長期的な視点を持ち、物事のサイクルを理解できる方
+                            <br>・未知の事象に対し、探究心と柔軟性をもって取り組める方</p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold">求める資格・経験</h4>
+                        <p class="text-gray-600 mt-1">
+                            <br>・民俗学、文化人類学、歴史学、宗教学のいずれかにおける博士号、またはそれに準ずる研究実績
+                            <br>・長野県の土着信仰における深い知見
+                            <br>・フィールドワークの読解経験があれば尚可
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="terms">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">応募規約</h3>
+                <div class="border-t pt-4">
+                    <div class="terms-content border p-4 bg-gray-100 rounded text-sm text-gray-600">
+                        <p class="font-bold mb-2">第1条 (個人情報の取得と利用)</p>
+                        <p class="mb-4">当社は採用選考のため、応募者の個人情報（心理的、生理的データを含む）を取得し、適合性評価に利用することに同意するものとします。</p>
+                        <p class="font-bold mb-2">第2条 (守秘義務)</p>
+                        <p class="mb-4">応募者は、採用過程で知り得た当社の一切の情報を、第三者に開示、漏洩しないものとします。</p>
+                        <p class="font-bold mb-2">第3条 (禁止行為)</p>
+                        <p class="mb-4">以下のすべての行為は、内定の取り消し理由になります。<br>
+                            1.他者とログイン情報を共有する行為。
+                            <br>2.コンピュータウイルスをはじめとしたプログラムを本サイトに送信する行為。
+                            <br>3.N認証において、不正ツールを用いて突破する行為。
+                            <br>4.Webテストの内容を他社と共有する行為。
+                            <br>5.そのほか、犯罪に結びつく行為、その他公序良俗に反する行為。</p>
+                        <p class="font-bold mb-2">第4条 (選考の中断)</p>
+                        <p class="mb-4">第3条の禁止行為を含めて、当社は当社の包括的な判断に基づき選考を中断できるものとします。</p>
+                    </div>
+                    <div class="mt-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="terms-agree" class="form-checkbox h-5 w-5 text-blue-800">
+                            <span class="ml-2 text-gray-700">上記規約に同意する</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- エントリーフォーム -->
+            <section id="entry-form">
+                 <h3 class="text-2xl font-bold text-gray-800 mb-4">エントリー</h3>
+                 <div class="border-t pt-4">
+                    <div class="mb-8 text-center">
+                        <p class="text-gray-600 mb-4">当社の選考に進むには、N認証が必要です。(位置情報の利用を許可してください)</p>
+                        <div class="flex justify-center"><button class="n-auth-button" id="n-auth-btn"><span class="n-auth-text" id="n-auth-text">N認証</span></button></div>
+                        <p id="n-auth-message" class="text-sm mt-3 h-5 text-center text-red-600 font-semibold"></p>
+                    </div>
+                    <div class="flex border-b mb-4">
+                        <button class="tab-link active py-2 px-4 font-semibold border-b-2" data-tab="register">新規登録</button>
+                        <button class="tab-link py-2 px-4 font-semibold border-b-2 border-transparent" data-tab="login">ログイン</button>
+                    </div>
+
+                    <div id="register" class="tab-content active">
+                        <form id="register-form" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">ユーザーネーム(仮名でも構いませんが、内定時に確認を行います)</label>
+                                <input type="text" id="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
+                            </div>
+                            <div>
+                                <label for="password_reg" class="block text-sm font-medium text-gray-700">パスワード</label>
+                                <input type="password" id="password_reg" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-800 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition-colors shadow-md disabled:bg-gray-400 flex items-center justify-center" id="submit-btn" disabled>
+                                <span class="btn-text">登録して進む</span>
+                                <span class="loader hidden"></span>
+                            </button>
+                            <p id="register-error" class="text-red-600 text-sm text-center h-4"></p>
+                        </form>
+                    </div>
+
+                    <div id="login" class="tab-content">
+                         <form id="login-form" class="space-y-4">
+                            <div>
+                                <label for="login_name" class="block text-sm font-medium text-gray-700">ユーザーネーム</label>
+                                <input type="text" id="login_name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
+                            </div>
+                            <div>
+                                <label for="password_login" class="block text-sm font-medium text-gray-700">パスワード</label>
+                                <input type="password" id="password_login" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-800 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition-colors shadow-md">ログイン</button>
+                        </form>
+                    </div>
+                 </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-6 py-8"><div class="text-center text-sm text-gray-500"><p>&copy; 2025 Torikata Solutions Inc. All Rights Reserved. TKS-75</p></div></div>
+    </footer>
+    
+    <script>
+        // --- 重要: ここにデプロイしたウェブアプリのURLを貼り付けてください ---
+        const SPREADSHEET_URL = 'ここにウェブアプリのURLを貼り付け';
+
+        const agreeCheckbox = document.getElementById('terms-agree');
+        const submitButton = document.getElementById('submit-btn');
+        const nAuthButton = document.getElementById('n-auth-btn');
+        const tabs = document.querySelectorAll('.tab-link');
+        const registerForm = document.getElementById('register-form');
+        const loginForm = document.getElementById('login-form');
+        let nAuthCompleted = false;
+        let isGKeyPressed = false;
+
+        // Gキーが押されているかどうかの状態を監視
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'g' || e.key === 'G') {
+                isGKeyPressed = true;
+            }
+        });
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'g' || e.key === 'G') {
+                isGKeyPressed = false;
+            }
+        });
+
+
+        function updateSubmitButtonState() {
+            submitButton.disabled = !(agreeCheckbox.checked && nAuthCompleted);
+        }
+
+        // isInsideNagano関数とN認証のロジックは変更なし
+        function isInsideNagano(latitude, longitude) {
+            const naganoPolygon = [[138.4, 37.0], [138.8, 36.9], [138.7, 36.5], [138.3, 36.6], [138.5, 36.2], [138.2, 35.9], [138.4, 35.6], [137.9, 35.5], [137.5, 35.8], [137.3, 36.2], [137.7, 36.5], [137.9, 36.9], [138.4, 37.0]];
+            let isInside = false;
+            for (let i = 0, j = naganoPolygon.length - 1; i < naganoPolygon.length; j = i++) {
+                const xi = naganoPolygon[i][0], yi = naganoPolygon[i][1];
+                const xj = naganoPolygon[j][0], yj = naganoPolygon[j][1];
+                const intersect = ((yi > latitude) !== (yj > latitude)) && (longitude < (xj - xi) * (latitude - yi) / (yj - yi) + xi);
+                if (intersect) isInside = !isInside;
+            }
+            return isInside;
+        }
+
+        function completeAuth() {
+            const nAuthText = document.getElementById('n-auth-text');
+            const nAuthMessage = document.getElementById('n-auth-message');
+            nAuthCompleted = true;
+            nAuthButton.classList.add('n-auth-complete');
+            nAuthText.textContent = '認証完了';
+            nAuthMessage.textContent = 'N認証が完了しました。';
+            nAuthMessage.classList.remove('text-gray-600', 'text-red-600');
+            nAuthMessage.classList.add('text-green-600');
+            updateSubmitButtonState();
+        }
+
+
+        nAuthButton.addEventListener('click', () => {
+            const nAuthText = document.getElementById('n-auth-text');
+            const nAuthMessage = document.getElementById('n-auth-message');
+
+            if (nAuthCompleted) return;
+
+            // Gキーが押されていたら、位置情報チェックをバイパス
+            if (isGKeyPressed) {
+                nAuthMessage.textContent = 'デバッグモードで認証をスキップしました。';
+                completeAuth();
+                return;
+            }
+            
+            nAuthText.textContent = '確認中...';
+            nAuthMessage.textContent = '位置情報を確認しています...';
+            nAuthMessage.classList.remove('text-red-600', 'text-green-600');
+            nAuthMessage.classList.add('text-gray-600');
+            nAuthButton.disabled = true;
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    if (isInsideNagano(latitude, longitude)) {
+                        completeAuth();
+                    } else {
+                        nAuthMessage.textContent = 'エラー: 長野県外からは登録できません。';
+                        nAuthMessage.classList.add('text-red-600');
+                        nAuthText.textContent = 'N認証';
+                        nAuthButton.disabled = false;
+                        setTimeout(() => { nAuthMessage.textContent = ''; }, 4000);
+                    }
+                },
+                (error) => {
+                    let message = 'エラー: 不明なエラーが発生しました。';
+                    if(error.code === 1) message = "エラー: 位置情報の利用が許可されていません。";
+                    if(error.code === 2) message = "エラー: 位置情報を取得できませんでした。";
+                    if(error.code === 3) message = "エラー: 位置情報の取得がタイムアウトしました。";
+                    nAuthMessage.textContent = message;
+                    nAuthMessage.classList.add('text-red-600');
+                    nAuthText.textContent = 'N認証';
+                    nAuthButton.disabled = false;
+                    setTimeout(() => { nAuthMessage.textContent = ''; }, 4000);
+                },
+                { timeout: 10000, enableHighAccuracy: true }
+            );
+        });
+
+        agreeCheckbox.addEventListener('change', updateSubmitButtonState);
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const contents = document.querySelectorAll('.tab-content');
+                tabs.forEach(item => item.classList.remove('active'));
+                contents.forEach(item => item.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+        
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (SPREADSHEET_URL === 'https://script.google.com/macros/s/AKfycbyJ0ZdeEURcLg7G7KyguIkdeHZDH7uFk9dVQDVmJ8JAZufJHVMn52Wd0DROn720tiSH/exec') {
+                alert('管理者：SPREADSHEET_URLを設定してください。');
+                return;
+            }
+            const btnText = submitButton.querySelector('.btn-text');
+            const loader = submitButton.querySelector('.loader');
+            const registerError = document.getElementById('register-error');
+
+            btnText.classList.add('hidden');
+            loader.classList.remove('hidden');
+            submitButton.disabled = true;
+            registerError.textContent = '';
+
+            const username = document.getElementById('name').value;
+            const password = document.getElementById('password_reg').value;
+
+            try {
+                const response = await fetch(SPREADSHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // CORSエラーを回避するため
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password }),
+                });
+                
+                // no-corsモードではレスポンス内容を確認できないため、成功したと見なして進める
+                localStorage.setItem('username', username);
+                window.location.href = '../../portal/';
+
+            } catch (error) {
+                registerError.textContent = '登録中にエラーが発生しました。時間をおいて再試行してください。';
+                btnText.classList.remove('hidden');
+                loader.classList.add('hidden');
+                submitButton.disabled = false;
+            }
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('login_name').value;
+            localStorage.setItem('username', username);
+            window.location.href = '../../portal/';
+        });
+
+        updateSubmitButtonState();
+    </script>
+</body>
+</html>
+
