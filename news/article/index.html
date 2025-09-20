@@ -93,7 +93,7 @@
         function parseContent(contentArray) {
             if (!contentArray) return '';
 
-            const fullText = contentArray.join('\n\n');
+            const fullText = Array.isArray(contentArray) ? contentArray.join('\n\n') : String(contentArray);
             const blocks = fullText.split(/\n\s*\n/);
 
             return blocks.map(block => {
@@ -165,7 +165,8 @@
 
         function renderSidebar(articles) {
              const sidebarContainer = document.getElementById('sidebar-articles-container');
-             sidebarContainer.innerHTML = Object.entries(articles).slice(0, 3).map(([id, article]) => `
+             if (!sidebarContainer) return;
+             sidebarContainer.innerHTML = Object.entries(articles).slice(0, 4).map(([id, article]) => `
                 <a href="?id=${id}" class="block group">
                     <img src="${article.imageUrl.replace('800x350', '300x175')}" alt="${article.imageAlt}" class="rounded-lg w-full mb-3">
                     <h4 class="font-bold text-lg text-gray-800 group-hover:underline">${article.title}</h4>
@@ -177,14 +178,18 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             fetch('articles.json')
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
                 .then(data => {
                     const { writers, articles } = data;
                     const urlParams = new URLSearchParams(window.location.search);
                     const writerId = urlParams.get('writer');
                     const articleId = urlParams.get('id');
                     
-                    document.getElementById('sidebar').style.display = 'block';
+                    const sidebar = document.getElementById('sidebar');
+                    if (sidebar) sidebar.style.display = 'block';
 
                     renderSidebar(articles);
 
@@ -203,7 +208,8 @@
                 })
                 .catch(error => {
                     console.error('データの読み込みに失敗しました:', error);
-                    document.getElementById('main-content-container').innerHTML = '<p>コンテンツを読み込めませんでした。時間をおいて再度お試しください。</p>';
+                    const mainContentContainer = document.getElementById('main-content-container');
+                    if(mainContentContainer) mainContentContainer.innerHTML = '<p>コンテンツを読み込めませんでした。時間をおいて再度お試しください。</p>';
                 });
         });
     </script>
