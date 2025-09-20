@@ -324,35 +324,22 @@
 
             const username = document.getElementById('name').value;
             const password = document.getElementById('password_reg').value;
+            const response = await fetch(SPREADSHEET_URL, {
+                method: 'POST',
+                mode: 'cors', // CORSモードに変更
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
+                redirect: 'follow'
+            });
 
-            try {
-                // fetchはno-corsモードだと常に成功したように振る舞い、catchブロックに入らない
-                // ネットワークエラーなどを検知するために、ここではcorsモードを試行する
-                const response = await fetch(SPREADSHEET_URL, {
-                    method: 'POST',
-                    mode: 'cors', // CORSモードに変更
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password }),
-                    redirect: 'follow'
-                });
-
-                if (!response.ok) {
-                    // サーバー側でエラーが発生した場合 (Apps Scriptがエラーを返した場合など)
-                    throw new Error(`サーバーエラーが発生しました (Status: ${response.status})`);
-                }
-                
-                // 成功時
-                localStorage.setItem('username', username);
-                window.location.href = '../../portal/';
-
-            } catch (error) {
-                // ネットワークエラー、CORSエラー、サーバーエラーなど
-                registerError.textContent = `登録エラー: ${error.message}。URL設定やネットワークを確認してください。`;
-                btnText.classList.remove('hidden');
-                loader.classList.add('hidden');
-                // 再試行できるようにボタンを有効化
-                submitButton.disabled = !(agreeCheckbox.checked && nAuthCompleted);
+            if (!response.ok) {
+                // サーバー側でエラーが発生した場合 (Apps Scriptがエラーを返した場合など)
+                throw new Error(`サーバーエラーが発生しました (Status: ${response.status})`);
             }
+            
+            // 成功時
+            localStorage.setItem('username', username);
+            window.location.href = '../../portal/';
         }
 
         function handleLoginSubmit(e) {
