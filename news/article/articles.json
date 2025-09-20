@@ -1,4 +1,16 @@
 {
+  "writers": {
+    "tanaka-kei": {
+      "name": "田中 圭",
+      "avatarUrl": "https://placehold.co/150x150/a0aec0/ffffff?text=田中",
+      "bio": "信濃の山々を愛する地元出身ライター。地域の文化や歴史、人々の暮らしを中心に取材を続けている。趣味は登山と温泉めぐり。"
+    },
+    "hayami-sae": {
+      "name": "早見 紗枝",
+      "avatarUrl": "https://placehold.co/150x150/a0aec0/ffffff?text=早見",
+      "bio": "元YFN信濃支部のジャーナリスト。鋭い視点で地域の事件や社会問題に切り込む記事を多数執筆。現在はフリーランスとして活動しているが、数週間前から連絡が取れなくなっている。"
+    }
+  },
   "articles": {
     "main-01": {
       "title": "伊那市で奇妙な水漏れ事故、原因は依然不明",
