@@ -131,19 +131,12 @@
             `;
         }
 
-        function renderWriterProfile(writer, articlesByWriter) {
+        function renderWriterProfile(writer) {
             const mainContentContainer = document.getElementById('main-content-container');
             const sidebar = document.getElementById('sidebar');
             sidebar.style.display = 'none'; // Hide sidebar on writer page
             mainContentContainer.classList.remove('lg:col-span-2');
             mainContentContainer.classList.add('lg:col-span-3');
-
-            let articlesHtml = articlesByWriter.map(article => `
-                <a href="?id=${article.id}" class="block group mb-4 border-b pb-4">
-                    <h4 class="font-bold text-lg text-gray-800 group-hover:underline">${article.title}</h4>
-                    <p class="text-gray-500 text-sm mt-1">${article.date}</p>
-                </a>
-            `).join('');
 
             mainContentContainer.innerHTML = `
                 <div class="writer-profile">
@@ -154,8 +147,6 @@
                         </div>
                     </div>
                     <p class="text-gray-700 leading-relaxed mb-8">${writer.bio}</p>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-4">執筆した記事</h3>
-                    <div>${articlesHtml}</div>
                 </div>
             `;
         }
@@ -184,10 +175,7 @@
                     renderSidebar(articles);
 
                     if (writerId && writers[writerId]) {
-                        const articlesByWriter = Object.entries(articles)
-                            .filter(([id, article]) => article.writer && article.writer.id === writerId)
-                            .map(([id, article]) => ({ ...article, id }));
-                        renderWriterProfile(writers[writerId], articlesByWriter);
+                        renderWriterProfile(writers[writerId]);
                     } else {
                         let articleToShowId = articleId;
                         if (!articleToShowId || !articles[articleToShowId]) {
