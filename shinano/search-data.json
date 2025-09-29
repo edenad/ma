@@ -4,50 +4,29 @@
   },
   "specific": [
     {
-      "keywords": ["高浪晋也", "事件", "1993年"],
-      "matchCount": 2,
+      "keywords": ["ちがや野メンタルクリニック", "クリニック", "メンタルクリニック","幻覚","幻聴","怪奇現象"],
+      "matchCount": 1,
       "results": [
         {
-          "title": "1993年に発生した連続事件について - 信濃総合事典",
-          "url": "articles/takanami_case_summary/",
-          "description": "1993年、高浪晋也によって引き起こされた一連の事件の概要。犯行の動機やその後の経緯については、多くの点が謎に包まれている。関連ジャーナリストの失踪についても言及されているが、詳細は不明。"
-        },
-        {
-          "title": "【記事削除】ジャーナリスト早見沙織氏のブログ「真実の欠片」",
-          "url": "articles/saori_hayami_blog_archive/",
-          "description": "ジャーナリスト早見沙織氏が運営していたブログのアーカイブ。高浪事件を追っていたとされるが、関連する記事はほとんどが削除されている。現在、彼女の消息は不明となっている。"
+          "title": "ちがや野メンタルクリニック",
+          "url": "chigayano_mental_clinic/",
+          "description": "心身の不調、幻覚、幻聴などに幅広く対応。経験豊富なスタッフが心のケアを提供します。"
         }
       ]
     },
     {
-      "keywords": ["ちがや野メンタルクリニック"],
+      "keywords": ["葉山貞文","ブログ","いじめ"],
       "matchCount": 1,
       "results": [
         {
-          "title": "ちがや野メンタルクリニック - 公式サイト",
-          "url": "clinic/",
-          "description": "長野県に位置するメンタルクリニック。院長の高浪時男医師をはじめ、経験豊富なスタッフが心のケアを提供します。お知らせ欄に、過去の事件との関連を否定する一文が掲載されている。"
-        }
-      ]
-    },
-    {
-      "keywords": ["KL-37"],
-      "matchCount": 1,
-      "results": [
-        {
-          "title": "薬品コードリスト - 医療関係者向けデータベース",
+          "title": "すこぶる日記",
           "url": "db/pharma_code_list/",
-          "description": "国内で認可されている薬品コードの一覧。しかし、KL-37に該当するコードは見つからない。特定の条件下でのみ検索可能であるか、未認可の薬品である可能性が示唆される。"
-        },
-        {
-          "title": "地域医療フォーラム過去ログ - 『特殊な処方箋』",
-          "url": "community/medical_forum_log_08/",
-          "description": "「...NK-Bio社が開発し、ごく一部の薬局でのみ治験的に扱われているという話を聞いたことがある。対象者の社会的活動を抑制する効果があるとか...」"
+          "description": "日記。"
         }
       ]
     },
     {
-      "keywords": ["高浪時男", "葉山貞文"],
+      "keywords": ["ちがや野メンタルクリニック", "江藤"],
       "matchCount": 2,
       "results": [
         {
@@ -58,29 +37,127 @@
       ]
     },
     {
-      "keywords": ["ちがや野メンタルクリニック", "猫"],
-      "matchCount": 2,
-      "results": [
-        {
-          "title": "ちがや野メンタルクリニック - 過去のお知らせ（2015年） - Webアーカイブ",
-          "url": "archive/clinic_2015_news/",
-          "description": "「当院のマスコット、レモンが虹の橋を渡りました」という短い告知が掲載されている。画像ファイル名は `lemon.jpg` となっている。"
-        }
-      ]
-    },
-    {
-      "keywords": ["佐久穂建設"],
+      "keywords": ["高浪院長","高浪時男"],
       "matchCount": 1,
       "results": [
         {
-          "title": "佐久穂建設 - 公式ウェブサイト",
-          "url": "sakuho_company/",
-          "description": "地域に根ざした総合建設会社、佐久穂建設の公式サイト。企業理念や施工実績などを紹介している。"
+          "title": "院長インタビュー",
+          "url": "archive/clinic_2015_news/",
+          "description": "新聞の切り抜き。"
         }
       ]
     },
     {
-      "keywords": ["宮部勤", "ひき逃げ"],
+      "keywords": ["富永靖男","飯綱南小学校"],
+      "matchCount": 1,
+      "results": [
+        {
+          "title": "陸上部全国大会出場 期待の超新星か",
+          "url": "archive/clinic_2015_news/",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "keywords": ["飯綱南小学校"],
+      "matchCount": 1,
+      "results": [
+        {
+          "title": "飯綱南小学校 - Nikipedia",
+          "url": "archive/clinic_2015_news/",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "keywords": ["事故","飛行機","飛行機事故","ニュース","墜落"],
+      "matchCount": 2,
+      "results": [
+        {
+          "title": "飛行機事故発生 県上空に謎の乱気流か",
+          "url": "archive/clinic_2015_news/",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "keywords": ["ペット","ちがや野メンタルクリニック","クリニック"],
+      "matchCount": 2,
+      "results": [
+        {
+          "title": "お知らせ(アーカイブ済み)",
+          "url": "archive/clinic_2015_news/",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "keywords": ["NK-Bio"],
+      "matchCount": 1,
+      "results": [
+        {
+          "title": "佐久穂建設ホームページ",
+          "url": "sakuho_company/",
+          "description": "長野県最大規模の建設会社。個人宅から法人まで幅広く。"
+        }
+      ]
+    },
+    {
+      "keywords": ["美倉薬局"],
+      "matchCount": 1,
+      "results": [
+        {
+          "title": "佐久穂建設ホームページ",
+          "url": "sakuho_company/",
+          "description": "長野県最大規模の建設会社。個人宅から法人まで幅広く。"
+        }
+      ]
+    },
+    {
+      "keywords": ["神坐"],
+      "matchCount": 1,
+      "results": [
+        {
+          "title": "伝承 - 神の座すところ",
+          "url": "articles/migura_dialect/",
+          "description": "戸隠のさらに奥地にあったとされる集落「神坐（みぐら）」でのみ使用されていた特殊な方言に関する民俗学的考察。哭沢（なきざわ）や依巫山（よりましやま）といった地名との関連が述べられている。"
+        },
+        {
+          "title": "神坐 - Nikipedia",
+          "url": "folklore/kinkyo_no_75/",
+          "description": "神坐に伝わる古い民話。神の力を得るために75人の生贄を捧げるという儀式の詳細が記されている。巷説をまとめたサイトだが、その記述は妙に具体的である。"
+        }
+      ]
+    },
+    {
+      "keywords": ["哭沢鉱山","哭沢"],
+      "matchCount": 1,
+      "results": [
+        {
+          "title": "哭沢鉱山 - Nikipedia",
+          "url": "articles/migura_dialect/",
+          "description": "。"
+        },
+        {
+          "title": "哭沢 - Nikipedia",
+          "url": "folklore/kinkyo_no_75/",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "keywords": ["佐久穂建設","建設","佐久穂正隆"],
+      "matchCount": 1,
+      "results": [
+        {
+          "title": "佐久穂建設ホームページ",
+          "url": "sakuho_company/",
+          "description": "長野県最大規模の建設会社。個人宅から法人まで幅広く。"
+        }
+      ]
+    },
+    {
+      "keywords": ["高浪晋也","佐久穂正隆"],
       "matchCount": 2,
       "results": [
         {
@@ -91,38 +168,22 @@
       ]
     },
     {
-      "keywords": ["佐久穂正隆", "妻"],
-      "matchCount": 2,
+      "keywords": ["佐倉具親"],
+      "matchCount": 1,
       "results": [
         {
-          "title": "佐久穂正隆氏 プロフィール - 地域経済人名鑑",
+          "title": "佐久穂建設作業員が死亡　安全確認の不備か",
           "url": "db/business_leaders_sakuho/",
           "description": "佐久穂建設代表取締役、佐久穂正隆氏の経歴紹介。家族構成の欄に「妻：佐久穂美代子」との記載がある。"
         }
       ]
     },
     {
-      "keywords": ["神坐", "方言"],
-      "matchCount": 2,
+      "keywords": ["佐倉詩音"],
+      "matchCount": 1,
       "results": [
         {
-          "title": "消えゆく言葉を訪ねて - 信州の特殊方言「神坐弁」について",
-          "url": "articles/migura_dialect/",
-          "description": "戸隠のさらに奥地にあったとされる集落「神坐（みぐら）」でのみ使用されていた特殊な方言に関する民俗学的考察。哭沢（なきざわ）や依巫山（よりましやま）といった地名との関連が述べられている。"
-        },
-        {
-          "title": "金棘の七十五 - 信州奇譚",
-          "url": "folklore/kinkyo_no_75/",
-          "description": "神坐に伝わる古い民話。神の力を得るために75人の生贄を捧げるという儀式の詳細が記されている。巷説をまとめたサイトだが、その記述は妙に具体的である。"
-        }
-      ]
-    },
-    {
-      "keywords": ["諏訪健二", "校長"],
-      "matchCount": 2,
-      "results": [
-        {
-          "title": "校長あいさつ - 諏訪市立諏訪小学校 公式サイト",
+          "title": "佐倉詩音氏　自宅で不審死　奇妙な符合",
           "url": "school/principal_message/",
           "description": "諏訪小学校の校長、諏訪健二による挨拶ページ。教育理念や子供たちへのメッセージが綴られている。"
         }
